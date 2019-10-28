@@ -1,0 +1,118 @@
+$ git log --stat|cat
+commit fa07f7ff19b589b1fd2dc24b7d15d8be905a166a
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 10:00:01 2019 +0200
+
+    delete ja rename
+
+ tiedostoja/file1             | 1 -
+ tiedostoja/{file2 => file22} | 0
+ 2 files changed, 1 deletion(-)
+
+commit 5c9e172b5c7ad9b14ed982b96fe233480514c3fa
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:58:44 2019 +0200
+
+    kolmas
+
+ tiedostoja/file3 | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit c9f92b0e2f178b8c105d93e48edb2f3457c9a044
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:55:40 2019 +0200
+
+    nyt oikein
+
+ tiedostoja/file1 | 1 +
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 1 insertion(+)
+
+commit ed148366bb783a0a04a022bc431b1d82d3ada5e3
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:55:10 2019 +0200
+
+    hups
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit faa9d3995dd38081214b33fc58f896e42f8ea00a
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:53:23 2019 +0200
+
+    hakemisto ja 3 tiedostoa
+
+ file1 | 0
+ file2 | 0
+ file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 38e3de617a68bb03ccc3142b41403b018af6a06d
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:47:08 2019 +0200
+
+    muutoksia
+
+ eka.txt    | 2 +-
+ kolmas.txt | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+commit 45c96b27e18c061e4ecd4b38e9583d29d7fc7f33
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:45:22 2019 +0200
+
+    rename
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4fc1f98f27df8ade7907c1f5057f43cc2e80999d
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:44:17 2019 +0200
+
+    poisto
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 529a0df57c7c1d0427caf6a9594925ed91a3707e
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:41:58 2019 +0200
+
+    hakemisto ja tiedosto
+
+ stuff/taasYksi.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 50c2ef83f9f4bc668e0a19e73b8cf5e7c801f9a9
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:40:53 2019 +0200
+
+    kolmas tiedosto
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c0ef6f261346b88a678205bed2934fd1ffc18adc
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:38:57 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit e6cddebc9d4862a38efbfb28e09fc6bf8ea3eddc
+Author: Jukka <jukka.aapro@helsinki.fi>
+Date:   Mon Oct 28 09:37:03 2019 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
