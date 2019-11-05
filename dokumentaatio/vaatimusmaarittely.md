@@ -2,15 +2,15 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen avulla käyttäjien on mahdollista pitää kirjaa tekemättömistään töistä eli _todoista_. Sovellusta on mahdollista käyttää useamman rekisteröityneen käyttäjän, joilla kaikilla on oma yksilöllinen tehtävälistansa.
+Sovelluksella voidaan tehdä yksikertaista työaikakirjanpitoa. Ohjelma laskee käytetyn ajan, sekä antaa luoda kommentteja kirjauksille. Vanhoja kirjauksia voi katsella. Ohjelma tukee useita käyttäjiä.
 
 ## Käyttäjät
 
-Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli _normaali käyttäjä_. Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu _pääkäyttäjä_.
+Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli _normaali käyttäjä_. Käyttäjiä voi olla useita Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu _pääkäyttäjä_.
 
 ## Käyttöliittymäluonnos
 
-Sovellus koostuu kolmesta eri näkymästä
+Sovellus koostuu yhdestä näkymästä:
 
 <img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/v-1.png" width="750">
 
