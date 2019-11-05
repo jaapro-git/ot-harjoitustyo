@@ -6,15 +6,15 @@ Sovelluksella voidaan tehdä yksikertaista työaikakirjanpitoa. Ohjelma laskee k
 
 ## Käyttäjät
 
-Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli _normaali käyttäjä_. Käyttäjiä voi olla useita Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu _pääkäyttäjä_.
+Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli _normaali käyttäjä_. Käyttäjiä voi olla useita. Myöhemmin sovellukseen saatetaan lisätä suuremmilla oikeuksilla varustettu _pääkäyttäjä_.
 
 ## Käyttöliittymäluonnos
 
 Sovellus koostuu yhdestä näkymästä:
 
-<img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/v-1.png" width="750">
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/thumbnail_20191105_132129.jpg" width="750">
 
-Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käyttäjän luomisnäkymään tai onnistuneen kirjautumisen yhteydessä kirjaantuneen käyttäjän tehtävälistaan.
+Sovellus aukeaa päänäkymään, jossa vanhoja kirjauksia voit katsella tai poistaa sekä aloittaa uuden kirjauksen tekeminen. Käyttäjää voi vaihtaa.
 
 ## Perusversion tarjoama toiminnallisuus
 
@@ -29,26 +29,15 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
 
 ### Kirjautumisen jälkeen
 
-- käyttäjä näkee omat tekemättömät työt eli _todot_
+- käyttäjä näkee omat tehdyt kirjaukset
 
-- käyttäjä voi luoda uuden todon
-  - luou todo näkyy ainoastaan sen luoneelle käyttäjälle
+- käyttäjä voi poistaa vanhan kirjauksen
 
-- käyttäjä voi merkitä todon tehdyksi, jolloin todo häviää listalta
+- käyttäjä voi aloittaa uuden kirjauksen tallentamisen
 
-- käyttäjä voi kirjautua ulos järjestelmästä
+- käyttäjää voi vaihtaa
 
 ## Jatkokehitysideoita
 
 Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavilla toiminnallisuuksilla
 
-- tehdyksi merkittyjen todojen tarkastelu
-- tehdyksi merkittyjen todojen merkkaaminen tekemättömiksi
-- todon tietojen editointi
-- todojen järjestely tärkeysjärjestykseen
-- todojen määrittely muille käyttäjille
-- käyttäjätiimit, jotka näkevät kaikki yhteiset todot
-- mahdollisuus useampaan erilliseen todo-listaan
-- lisätään todoon kenttä, johon on mahdollista merkitä tarkempia todoon liittyviä tietoja
-- käyttäjien yhteyteen salasana, joka vaaditaan kirjautuessa
-- käyttäjätunnuksen (ja siihen liittyvien todojen) poisto
