@@ -7,3 +7,4 @@ Kurssin git-hub repo löytyy *tästä* kansiosta.
 [tree](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/laskarit/komentorivi.txt)
 
 ## Viikko2
+[screenshot](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/laskarit/screenshot.png)
