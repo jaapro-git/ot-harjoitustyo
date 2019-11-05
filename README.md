@@ -8,3 +8,4 @@ Kurssin git-hub repo löytyy *tästä* kansiosta.
 
 ## Viikko2
 [screenshot](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/laskarit/screenshot.png)
+[vaatimusmäärittely](https://raw.githubusercontent.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/vaatimusmaarittely.md)
