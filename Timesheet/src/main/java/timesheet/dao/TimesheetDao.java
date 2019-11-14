@@ -5,10 +5,19 @@
  */
 package timesheet.dao;
 
+import java.util.List;
+import timesheet.domain.TimesheetEntry;
+
 /**
  *
  * @author Jukka
  */
 public interface TimesheetDao {
+    
+    TimesheetEntry create(TimesheetEntry entry) throws Exception;
+    
+    List<TimesheetEntry> getAll();
+    
+    void setComplete(int id) throws Exception;
     
 }

@@ -22,8 +22,10 @@ public class Main {
         //temporary cli
         System.out.println("Enter username: ");
         String uname = sc.nextLine();
+        System.out.println("Enter name: ");
+        String name = sc.nextLine();
         
-        User cuser = new User(uname);
+        User cuser = new User(uname, name);
         
         TimesheetService cliSession = new TimesheetService(cuser);
         
