@@ -13,6 +13,7 @@ public class User {
     
     String uname;
     String name;
+    String type;
     
     public User(String uname, String name){
         this.uname = uname;

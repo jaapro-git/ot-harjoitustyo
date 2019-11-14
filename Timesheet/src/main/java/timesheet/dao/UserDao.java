@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserDao {
     
-    User create(User user) throws Exception;
+    boolean create(User user) throws Exception;
     
     User findByUname(String uname);
     

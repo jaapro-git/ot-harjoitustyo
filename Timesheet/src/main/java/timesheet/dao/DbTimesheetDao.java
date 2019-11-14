@@ -23,6 +23,40 @@ public class DbTimesheetDao implements TimesheetDao{
     
     private List<TimesheetEntry> entries;
     
+    private Connection conn;
+    private DatabaseMetaData meta;
+    final private String createTimesheetEntriesTable;
+    
+    public DbTimesheetDao() throws Exception{
+        
+        String url = "jdbc:sqlite:db/timesheetTimesheetEntries.db";
+        
+        createTimesheetEntriesTable = "CREATE TABLE IF NOT EXISTS timesheetentries (\n"
+                        + " id text PRIMARY KEY, \n"
+                        + " comment text NOT NULL \n"
+                        + " complete bool NOT NULL \n"
+                        + " comment text NOT NULL \n"
+                        + " uname text NOT NULL \n"
+                        + " begin text NOT NULL \n"
+                        + " end text NOT NULL \n"
+                        + ");";
+           
+        try{
+            // register the driver 
+            String sDriverName = "org.sqlite.JDBC";
+            Class.forName(sDriverName);
+            conn = DriverManager.getConnection(url);
+            if(conn != null){               
+                Statement stmt = conn.createStatement();
+                stmt.execute(createTimesheetEntriesTable);
+            }
+        } catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        } finally{
+            
+        }
+    }
+    
     private void update() throws Exception{
         
     }

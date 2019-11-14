@@ -21,10 +21,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         //temporary cli
-        System.out.println("Enter username: ");
-        String uname = sc.nextLine();
-        System.out.println("Enter name: ");
-        String name = sc.nextLine();
+        //System.out.println("Enter username: ");
+        String uname = "test";//sc.nextLine();
+        //System.out.println("Enter name: ");
+        String name = "Test";//sc.nextLine();
         
         User cuser = new User(uname, name);
         
