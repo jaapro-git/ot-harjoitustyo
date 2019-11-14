@@ -5,6 +5,8 @@
  */
 package timesheet.domain;
 
+import java.time.Instant;
+
 /**
  *
  * @author Jukka
@@ -15,12 +17,27 @@ public class TimesheetEntry {
     private String comment;
     private boolean complete;
     private User user;
+    private Instant beginTimeStamp;
+    private Instant endTimeStamp;
+    
     
     public TimesheetEntry(int id, String comment, boolean complete, User user){
         this.id = id;
         this.comment = comment;
-        this.complete complete;
+        this.complete = complete;
         this.user = user;
+        this.beginTimeStamp = Instant.now();
+    }
+    
+    public TimeSheetEntry(User user){
+        this.id = 123;
+        this.complete = false;
+        this.user = user;
+        this.beginTimeStamp = Instant.now();
+    }
+    
+    public void setComment(String comment){
+        this.comment = comment;
     }
     
     public String getComment(){
@@ -41,8 +58,8 @@ public class TimesheetEntry {
     
     public void setComplete(){
         this.complete = true;
+        this.endTimeStamp = Instant.now();
     }
-    
     
     @Override
     public boolean equals(Object obj) {
@@ -53,6 +70,5 @@ public class TimesheetEntry {
 
         TimesheetEntry other = (TimesheetEntry) obj;
         return id == other.id;
-
     }
 }

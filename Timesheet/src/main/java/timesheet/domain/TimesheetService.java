@@ -13,14 +13,14 @@ import timesheet.dao.*;
  */
 public class TimesheetService {
     
-    private User cuser;
+    private User cUser;
     private UserDao userData;
     private TimesheetDao timesheetData;
     
     
-    public TimesheetService(User cuser){
+    public TimesheetService(User cUser){
         
-        this.cuser = cuser;
+        this.cUser = cUser;
     }
     
     
@@ -29,24 +29,24 @@ public class TimesheetService {
         
         if(user == null) return false;
         
-        cuser = user;
+        cUser = user;
    
         return true;
     }
     
     public void userLogout(){
-        cuser = null;
+        cUser = null;
     }
     
     public boolean newUser(String uname, String name){
         
         //already exists?
-        if(UserDao.findByUname()!=null) return false;
+        if(UserDao.findByUname(uname)!=null) return false;
 
         User user = new User(uname, name);
         
         try{
-            userDao.create(user);
+            UserDao.create(user);
         }catch Exception e{
             return false;
         }
