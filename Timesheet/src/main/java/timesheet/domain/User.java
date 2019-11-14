@@ -22,4 +22,8 @@ public class User {
     public String getName(){
         return this.name;
     }
+    
+    public String getUsername(){
+        return this.uname;
+    }
 }

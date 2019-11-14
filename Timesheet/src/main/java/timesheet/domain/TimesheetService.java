@@ -20,16 +20,18 @@ public class TimesheetService {
     private TimesheetDao timesheetData;
     
     
-    public TimesheetService(User cUser){
+    public TimesheetService(TimesheetDao timesheetData, UserDao userData){
         
-        this.cUser = cUser;
+        //this.cUser = cUser;
+        this.timesheetData = timesheetData;
+        this.userData = userData;
     }
     
     public boolean createTimeSheetEntry(){
         TimesheetEntry entry = new TimesheetEntry(cUser);
         
         try{
-            TimesheetDao.create(entry);
+            timesheetData.create(entry);
         } catch(Exception ex){
             return false;
         }
@@ -39,7 +41,7 @@ public class TimesheetService {
     public List<TimesheetEntry> getEntries(){
        if(cUser == null) return new ArrayList<>();
        
-       return timesheetData.getAll();
+       return timesheetData.getEntries();
     }    
     
     public void setComplete(int id){
@@ -49,8 +51,8 @@ public class TimesheetService {
         }    
     }
         
-    public boolean userLogin(User uname){
-        User user = UserDao.findByUname(uname);
+    public boolean userLogin(String uname){
+        User user = userData.findByUname(uname);
         
         if(user == null) return false;
         
@@ -70,17 +72,16 @@ public class TimesheetService {
     public boolean newUser(String uname, String name){
         
         //already exists?
-        if(UserDao.findByUname(uname)!=null) return false;
+        if(userData.findByUname(uname)!=null) return false;
 
         User user = new User(uname, name);
         
         try{
-            UserDao.create(user);
-        }catch Exception e{
+            userData.create(user);
+        }catch (Exception ex){
             return false;
         }
         
         return true;
-        }
     }
 }

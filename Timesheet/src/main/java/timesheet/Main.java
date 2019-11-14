@@ -7,6 +7,7 @@ package timesheet;
 
 import timesheet.domain.*;
 import java.util.*;
+import timesheet.dao.*;
 
 /**
  *
@@ -27,7 +28,11 @@ public class Main {
         
         User cuser = new User(uname, name);
         
-        TimesheetService cliSession = new TimesheetService(cuser);
+        try{
+            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(), new DbUserDao());
+        } catch(Exception ex){
+            
+        }
         
     }
 }
