@@ -6,6 +6,8 @@
 package timesheet.domain;
 
 import timesheet.dao.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,7 +25,30 @@ public class TimesheetService {
         this.cUser = cUser;
     }
     
+    public boolean createTimeSheetEntry(){
+        TimesheetEntry entry = new TimesheetEntry(cUser);
+        
+        try{
+            TimesheetDao.create(entry);
+        } catch(Exception ex){
+            return false;
+        }
+        return true;
+    }
     
+    public List<TimesheetEntry> getEntries(){
+       if(cUser == null) return new ArrayList<>();
+       
+       return timesheetData.getAll();
+    }    
+    
+    public void setComplete(int id){
+        try{
+            timesheetData.setComplete(id);
+        } catch(Exception ex){
+        }    
+    }
+        
     public boolean userLogin(User uname){
         User user = UserDao.findByUname(uname);
         
@@ -32,6 +57,10 @@ public class TimesheetService {
         cUser = user;
    
         return true;
+    }
+    
+    public User getCurrentUser(){
+        return cUser;
     }
     
     public void userLogout(){

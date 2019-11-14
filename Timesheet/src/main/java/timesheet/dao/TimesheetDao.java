@@ -16,7 +16,7 @@ public interface TimesheetDao {
     
     TimesheetEntry create(TimesheetEntry entry) throws Exception;
     
-    List<TimesheetEntry> getAll();
+    List<TimesheetEntry> getEntries();
     
     void setComplete(int id) throws Exception;
     

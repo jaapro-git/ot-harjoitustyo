@@ -29,7 +29,7 @@ public class TimesheetEntry {
         this.beginTimeStamp = Instant.now();
     }
     
-    public TimeSheetEntry(User user){
+    public TimesheetEntry(User user){
         this.id = 123;
         this.complete = false;
         this.user = user;
