@@ -31,7 +31,7 @@ public class DbUserDao implements UserDao{
     String url;
     
     public DbUserDao() throws Exception{
-        url = "jdbc:sqlite:db/timesheetUsers.db";
+        url = "jdbc:sqlite:timesheetUsers.db";
         
         createUsersTable = "CREATE TABLE IF NOT EXISTS users (\n"
                         + " uname text PRIMARY KEY, \n"

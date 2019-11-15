@@ -29,7 +29,7 @@ public class DbTimesheetDao implements TimesheetDao{
     
     public DbTimesheetDao() throws Exception{
         
-        String url = "jdbc:sqlite:db/timesheetTimesheetEntries.db";
+        String url = "jdbc:sqlite:timesheetTimesheetEntries.db";
         
         createTimesheetEntriesTable = "CREATE TABLE IF NOT EXISTS timesheetentries (\n"
                                     + "id integer PRIMARY KEY, \n"
