@@ -89,6 +89,8 @@ public class DbUserDao implements UserDao{
         String selectCurrentUser = "SELECT uname, name "
                                 + "FROM users "
                                 + "WHERE uname = ?;";
+        
+        User user;
                 
         try{
             conn = DriverManager.getConnection(url);
@@ -96,10 +98,14 @@ public class DbUserDao implements UserDao{
                 PreparedStatement pstmt = conn.prepareStatement(selectCurrentUser);
                 pstmt.setString(1, uname);
                 ResultSet rs = pstmt.executeQuery();
-                
+
+                if(rs.next()){
+                    user = new User(rs.getString("uname"), rs.getString("name"));
+                }else{
+                    user = new User("","");
+                }
                 conn.close();
-                
-                if(rs.first()) return new User(rs.getString("uname"), rs.getString("name"));   
+                return user;
             }                              
         } catch(SQLException ex){
             System.out.println(ex.getMessage());
@@ -111,7 +117,7 @@ public class DbUserDao implements UserDao{
     @Override
     public boolean create(User user) throws Exception{
              
-        String createUser = "INSERT INTO TABLE users (uname, name) "
+        String createUser = "INSERT INTO users (uname, name) "
                                 + "VALUES(?, ?);";
                 
         try{
