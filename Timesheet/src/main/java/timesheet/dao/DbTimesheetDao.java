@@ -32,14 +32,13 @@ public class DbTimesheetDao implements TimesheetDao{
         String url = "jdbc:sqlite:db/timesheetTimesheetEntries.db";
         
         createTimesheetEntriesTable = "CREATE TABLE IF NOT EXISTS timesheetentries (\n"
-                        + " id text PRIMARY KEY, \n"
-                        + " comment text NOT NULL \n"
-                        + " complete bool NOT NULL \n"
-                        + " comment text NOT NULL \n"
-                        + " uname text NOT NULL \n"
-                        + " begin text NOT NULL \n"
-                        + " end text NOT NULL \n"
-                        + ");";
+                                    + "id integer PRIMARY KEY, \n"
+                                    + "comment text, \n"
+                                    + "complete integer NOT NULL, \n"
+                                    + "uname text NOT NULL, \n"
+                                    + "begin text NOT NULL, \n"
+                                    + "end text \n"
+                                    + ");";
            
         try{
             // register the driver 
@@ -53,13 +52,13 @@ public class DbTimesheetDao implements TimesheetDao{
         } catch(SQLException ex){
             System.out.println(ex.getMessage());
         } finally{
-            
+            conn.close();
         }
     }
     
-    private void update() throws Exception{
-        
-    }
+//    private void update() throws Exception{
+//        
+//    }
     
     private int generateId() {
         return entries.size() + 1;
@@ -71,11 +70,10 @@ public class DbTimesheetDao implements TimesheetDao{
     }
 
     @Override
-    public TimesheetEntry create(TimesheetEntry entry) throws Exception {
+    public boolean create(TimesheetEntry entry) throws Exception {
         entry.setId(generateId());
         entries.add(entry);
-        update();
-        return entry;
+        return false;
     }
 
     @Override
@@ -85,6 +83,5 @@ public class DbTimesheetDao implements TimesheetDao{
                 e.setComplete();
             }
         }
-        update();
     }
 }

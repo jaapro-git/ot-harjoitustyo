@@ -21,15 +21,20 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         
         //temporary cli
-        //System.out.println("Enter username: ");
-        String uname = "test";//sc.nextLine();
-        //System.out.println("Enter name: ");
-        String name = "Test";//sc.nextLine();
-        
-        User cuser = new User(uname, name);
+        System.out.print("Enter username: ");
+        String uname = sc.nextLine();
+        System.out.print("Enter name: ");
+        String name = sc.nextLine();
         
         try{
             TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(), new DbUserDao());
+            if(cliSession.userLogin(uname)){
+                System.out.println("User "+uname+" successully logged in!");
+            }else if(cliSession.newUser(uname, name)){
+                System.out.println("New user "+uname+" successully created!");
+            }else{
+                System.out.println("Something did not work!");
+            }    
         } catch(Exception ex){
             
         }

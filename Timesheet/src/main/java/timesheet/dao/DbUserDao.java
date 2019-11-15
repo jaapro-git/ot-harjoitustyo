@@ -97,9 +97,9 @@ public class DbUserDao implements UserDao{
                 pstmt.setString(1, uname);
                 ResultSet rs = pstmt.executeQuery();
                 
-                if(rs.first()) return new User(rs.getString("uname"), rs.getString("name"));
-                
                 conn.close();
+                
+                if(rs.first()) return new User(rs.getString("uname"), rs.getString("name"));   
             }                              
         } catch(SQLException ex){
             System.out.println(ex.getMessage());

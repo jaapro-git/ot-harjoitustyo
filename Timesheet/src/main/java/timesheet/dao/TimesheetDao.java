@@ -14,7 +14,7 @@ import timesheet.domain.TimesheetEntry;
  */
 public interface TimesheetDao {
     
-    TimesheetEntry create(TimesheetEntry entry) throws Exception;
+    boolean create(TimesheetEntry entry) throws Exception;
     
     List<TimesheetEntry> getEntries();
     
