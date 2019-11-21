@@ -25,7 +25,6 @@ import timesheet.domain.TimesheetService;
 
 
 public class TimesheetUi extends Application{
-    private TimesheetService timesheetService;
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -33,16 +32,7 @@ public class TimesheetUi extends Application{
     
     @Override
     public void init() throws Exception {
-        //Properties properties = new Properties();
-
-        //properties.load(new FileInputStream("config.properties"));
-        
-        //String userFile = properties.getProperty("userFile");
-        //String todoFile = properties.getProperty("todoFile");
-            
-        DbUserDao userData = new DbUserDao();
-        DbTimesheetDao timesheetData = new DbTimesheetDao();
-        timesheetService = new TimesheetService(timesheetData, userData);
+           
     }
 
     @Override

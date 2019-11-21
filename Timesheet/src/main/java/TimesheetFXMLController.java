@@ -29,8 +29,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import timesheet.dao.DbTimesheetDao;
+import timesheet.dao.DbUserDao;
  
 public class TimesheetFXMLController {
+    
+    private TimesheetService timesheetService;
+    
     @FXML
     private TextField txtUsername;
     @FXML
@@ -72,19 +77,42 @@ public class TimesheetFXMLController {
     // Add a public no-args constructor
     public TimesheetFXMLController(){
     }
+    
+    @FXML
+    public void initialize() throws Exception{
+        DbUserDao userData = new DbUserDao();
+        DbTimesheetDao timesheetData = new DbTimesheetDao();
+        timesheetService = new TimesheetService(timesheetData, userData);
+        btnLogout.setVisible(false);
+    }
      
     @FXML
     private void doLogin(ActionEvent event){
-        System.out.println("Test");
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Test");
-        alert.setHeaderText("Test");
-        alert.setContentText("Test");
-        Optional<ButtonType> result = alert.showAndWait(); 
+        
+        if(txtUsername.getText().equals("")){
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Missing Username");
+            alert.setContentText("Please enter a username");
+            alert.show();
+            return;
+        }
+        
+        if(timesheetService.userLogin(txtUsername.getText())){
+                System.out.println("User "+txtUsername.getText()+" successully logged in!");
+                btnLogin.setVisible(false);
+                btnLogout.setVisible(true);
+                txtUsername.setDisable(true);
+        }else if(timesheetService.newUser(txtUsername.getText(), txtUsername.getText())){
+                System.out.println("New user "+txtUsername.getText()+" successully created!");
+        }else{
+                System.out.println("Something did not work!");
+        }  
     }
 
     @FXML
     private void doLogout(ActionEvent event) {
-        System.out.println("Test");
+        txtUsername.setDisable(false);
+        btnLogin.setVisible(true);
+        btnLogout.setVisible(false);
     }
 }
