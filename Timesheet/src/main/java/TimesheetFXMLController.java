@@ -76,9 +76,9 @@ public class TimesheetFXMLController {
         System.out.println("Test");
         Window owner = btnLogin.getScene().getWindow();
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
+        alert.setTitle("Test");
         alert.setHeaderText(null);
-        alert.setContentText("I have a great message for you!");
+        alert.setContentText("Test");
         alert.initOwner(owner);
         alert.showAndWait(); 
     }
