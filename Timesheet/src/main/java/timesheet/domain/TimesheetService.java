@@ -19,7 +19,6 @@ public class TimesheetService {
     private UserDao userData;
     private TimesheetDao timesheetData;
     
-    
     public TimesheetService(TimesheetDao timesheetData, UserDao userData){
         
         //this.cUser = cUser;

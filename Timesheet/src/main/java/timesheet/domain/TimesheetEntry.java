@@ -19,8 +19,7 @@ public class TimesheetEntry {
     private User user;
     private Instant beginTimeStamp;
     private Instant endTimeStamp;
-    
-    
+      
     public TimesheetEntry(int id, String comment, boolean complete, User user){
         this.id = id;
         this.comment = comment;

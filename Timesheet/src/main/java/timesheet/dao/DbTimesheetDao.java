@@ -64,6 +64,10 @@ public class DbTimesheetDao implements TimesheetDao{
         return entries.size() + 1;
     }
     
+    private boolean deleteEntry(int id) {
+        return false;
+    }
+    
     @Override
     public List<TimesheetEntry> getEntries() {
         return entries;
