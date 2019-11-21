@@ -12,6 +12,7 @@ import timesheet.domain.TimesheetService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Optional;
  
 import javafx.fxml.FXML;
 
@@ -21,6 +22,7 @@ import javafx.event.ActionEvent;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -74,13 +76,11 @@ public class TimesheetFXMLController {
     @FXML
     private void doLogin(ActionEvent event){
         System.out.println("Test");
-        Window owner = btnLogin.getScene().getWindow();
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Test");
-        alert.setHeaderText(null);
+        alert.setHeaderText("Test");
         alert.setContentText("Test");
-        alert.initOwner(owner);
-        alert.showAndWait(); 
+        Optional<ButtonType> result = alert.showAndWait(); 
     }
 
     @FXML
