@@ -5,7 +5,6 @@
  */
 package timesheet.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import timesheet.domain.User;
 
@@ -28,15 +27,28 @@ public class DbUserDao implements UserDao{
     private Connection conn;
     private DatabaseMetaData meta;
     final private String createUsersTable;
-    String url;
+    final private String url;
+    final private String selectAllUsers;
+    final private String selectCurrentUser;
+    final private String createUser;
     
     public DbUserDao() throws Exception{
         url = "jdbc:sqlite:timesheetUsers.db";
         
         createUsersTable = "CREATE TABLE IF NOT EXISTS users (\n"
-                        + " uname text PRIMARY KEY, \n"
-                        + " name text NOT NULL \n"
-                        + ");";
+                         + " uname text PRIMARY KEY, \n"
+                         + " name text NOT NULL \n"
+                         + ");";
+        
+        selectAllUsers = "SELECT uname, name "
+                              + "FROM users;";
+        
+        selectCurrentUser = "SELECT uname, name "
+                                 + "FROM users "
+                                 + "WHERE uname = ?;";
+        
+        createUser = "INSERT INTO users (uname, name) "
+                                + "VALUES(?, ?);";
            
         try{
             // register the driver 
@@ -58,11 +70,15 @@ public class DbUserDao implements UserDao{
     //    
     //}
     
+    public User getSingleUser(String uname){
+        for(User u:users){
+            if(u.getUsername().equals(uname)) return u;
+        }
+        return null;
+    }
+    
     @Override
     public List<User> getUsers(){
-        
-        String selectAllUsers = "SELECT uname, name "
-                                + "FROM users;";
                 
         try{
             conn = DriverManager.getConnection(url);
@@ -86,10 +102,6 @@ public class DbUserDao implements UserDao{
     @Override
     public User findByUname(String uname){
         
-        String selectCurrentUser = "SELECT uname, name "
-                                + "FROM users "
-                                + "WHERE uname = ?;";
-        
         User user;
                 
         try{
@@ -102,7 +114,7 @@ public class DbUserDao implements UserDao{
                 if(rs.next()){
                     user = new User(rs.getString("uname"), rs.getString("name"));
                 }else{
-                    user = new User("","");
+                    return null;
                 }
                 conn.close();
                 return user;
@@ -116,10 +128,7 @@ public class DbUserDao implements UserDao{
     
     @Override
     public boolean create(User user) throws Exception{
-             
-        String createUser = "INSERT INTO users (uname, name) "
-                                + "VALUES(?, ?);";
-                
+                   
         try{
             conn = DriverManager.getConnection(url);
             if(conn != null){               

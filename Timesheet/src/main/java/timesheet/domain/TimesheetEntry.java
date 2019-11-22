@@ -5,34 +5,38 @@
  */
 package timesheet.domain;
 
+import java.sql.Time;
 import java.time.Instant;
 
 /**
  *
  * @author Jukka
  */
-public class TimesheetEntry {
+public class TimesheetEntry extends Object{
     
     private int id;
     private String comment;
     private boolean complete;
-    private User user;
+    private String username;
     private Instant beginTimeStamp;
     private Instant endTimeStamp;
       
-    public TimesheetEntry(int id, String comment, boolean complete, User user){
+    public TimesheetEntry(int id, String comment, boolean complete, String user, String beginTime, String endTime){
         this.id = id;
         this.comment = comment;
         this.complete = complete;
-        this.user = user;
-        this.beginTimeStamp = Instant.now();
+        this.username = user;
+        this.beginTimeStamp = Instant.parse(beginTime);
+        this.endTimeStamp = Instant.parse(endTime);
     }
     
-    public TimesheetEntry(User user){
+    public TimesheetEntry(String user, String comment){
         this.id = 123;
+        this.comment = comment;
         this.complete = false;
-        this.user = user;
+        this.username = user;
         this.beginTimeStamp = Instant.now();
+        this.endTimeStamp = Instant.MAX;
     }
     
     public void setComment(String comment){
@@ -55,8 +59,16 @@ public class TimesheetEntry {
         return this.complete;
     }
     
-    public User getUser(){
-        return this.user;
+    public String getUsername(){
+        return this.username;
+    }
+    
+    public String getBeginTime(){
+        return this.beginTimeStamp.toString();
+    }
+        
+    public String getEndTime(){
+        return this.endTimeStamp.toString();
     }
     
     public void setComplete(){

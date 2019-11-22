@@ -11,9 +11,9 @@ package timesheet.domain;
  */
 public class User {
     
-    String uname;
-    String name;
-    String type;
+    private String uname;
+    private String name;
+    private String type;
     
     public User(String uname, String name){
         this.uname = uname;

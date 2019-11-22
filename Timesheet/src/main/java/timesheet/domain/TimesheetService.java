@@ -26,8 +26,8 @@ public class TimesheetService {
         this.userData = userData;
     }
     
-    public boolean createTimeSheetEntry(){
-        TimesheetEntry entry = new TimesheetEntry(cUser);
+    public boolean createTimeSheetEntry(String comment){
+        TimesheetEntry entry = new TimesheetEntry(cUser.getUsername(), comment);
         
         try{
             timesheetData.create(entry);
@@ -55,7 +55,7 @@ public class TimesheetService {
         
         if(user == null) return false;
         
-        cUser = user;
+        this.cUser = user;
    
         return true;
     }
@@ -76,7 +76,7 @@ public class TimesheetService {
         User user = new User(uname, name);
         
         try{
-            userData.create(user);
+            if(userData.create(user)) this.cUser = user;
         }catch (Exception ex){
             return false;
         }
