@@ -5,6 +5,8 @@ Sovelluksen avulla käyttäjät voivat ylläpitää tuntikirjauksia. Jokainen k�
 ## Dokumentaatio
 [Vaatimusmäärittely](https://raw.githubusercontent.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/vaatimusmaarittely.md)
 
+[Arkkitehtuuri](https://raw.githubusercontent.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/arkkitehtuuri.md)
+
 [Työaikakirjanpito](https://raw.githubusercontent.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/tyoaikakirjanpito.md)
 
 <!-- # Ohjelmistotuotanto syksy 2019
