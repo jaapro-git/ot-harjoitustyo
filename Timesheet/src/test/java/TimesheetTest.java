@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import timesheet.dao.DbTimesheetDao;
 import timesheet.dao.DbUserDao;
+import timesheet.domain.TimesheetEntry;
 import timesheet.domain.TimesheetService;
 
 /**
@@ -21,11 +21,27 @@ import timesheet.domain.TimesheetService;
  */
 public class TimesheetTest {
     
+    static String uname;
+    static String varUname;
+    static String name;
+    static TimesheetService session;
+    
     public TimesheetTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        
+        varUname = "test"+java.time.Instant.now().toString();
+        uname = "test";
+        name = "Testaaja";
+        
+        try{
+            session = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
+            session.newUser(uname, name);
+        } catch (Exception ex){
+            
+        }
     }
     
     @AfterClass
@@ -34,6 +50,8 @@ public class TimesheetTest {
     
     @Before
     public void setUp() {
+        session.newUser(uname, name);
+        session.userLogin(uname);
     }
     
     @After
@@ -46,35 +64,44 @@ public class TimesheetTest {
     // @Test
     // public void hello() {}
 
-//    @Test
-//    public void userCreateTest(){
-//        
-//        String uname = "test"+java.time.Instant.now().toString();
-//        String name = "Testaaja";
-//        
-//        try{
-//            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(), new DbUserDao());
-//            if(cliSession.newUser(uname, name)) return;
-//            fail("Something did not work!"); 
-//        } catch(Exception ex){
-//            System.out.println("SQL Error!");
-//        }
-//    }
+    @Test
+    public void userCreateTest(){
+       
+        try{
+            if(session.newUser(varUname, name)) return;
+            fail("Something did not work!"); 
+        } catch(Exception ex){
+            System.out.println("SQL Error!");
+        }
+    }
     
     @Test
     public void userLoginTest(){
         
-        String uname = "test";
-        String name = "Testaaja";
-        
+        session.userLogout();
         try{
-            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(), new DbUserDao());
-            cliSession.newUser(uname, name);
-            
-            if(cliSession.userLogin(uname)) return;
+            if(session.userLogin(uname)) return;
             fail("Something did not work!"); 
         } catch(Exception ex){
             System.out.println("SQL Error!");
+        }
+    }
+    
+    @Test
+    public void createEntries(){
+        
+        session.createTimeSheetEntry("Test comment 1");
+        session.createTimeSheetEntry("Test comment 2");
+        session.createTimeSheetEntry("Test comment 3");
+        
+        if(session.getEntries().size() == 3) return;
+        fail("Something did not work!"); 
+    }
+    
+    @Test
+    public void listEntries(){
+        for(TimesheetEntry e:session.getEntries()){
+            if(e.getUsername() != uname) fail("Something did not work!");
         }
     }
 }

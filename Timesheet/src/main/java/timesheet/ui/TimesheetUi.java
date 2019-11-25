@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package timesheet;
+package timesheet.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,7 @@ import timesheet.domain.TimesheetService;
  */
 
 
-public class TimesheetUi extends Application{
+public class TimesheetUi extends Application {
 
     public static void main(String[] args) {
         Application.launch(args);
@@ -44,14 +44,14 @@ public class TimesheetUi extends Application{
             stage.setTitle("Timesheet");
             stage.setScene(new Scene(root));
             stage.show();
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             stop();
         }
     }
     
     @Override
-    public void stop(){
+    public void stop() {
         
     }
 }

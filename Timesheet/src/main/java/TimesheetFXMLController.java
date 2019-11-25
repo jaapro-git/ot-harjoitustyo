@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -78,12 +80,13 @@ public class TimesheetFXMLController {
     private VBox vboxTimesheet;
      
     // Add a public no-args constructor
-    public TimesheetFXMLController(){
-    }
+    public TimesheetFXMLController() {
+        
+    } 
     
-    public void initialize() throws Exception{
-        DbUserDao userData = new DbUserDao();
-        DbTimesheetDao timesheetData = new DbTimesheetDao();
+    public void initialize() throws Exception {
+        DbUserDao userData = new DbUserDao(false);
+        DbTimesheetDao timesheetData = new DbTimesheetDao(false);
         timesheetService = new TimesheetService(timesheetData, userData);
         btnLogout.setVisible(false);
         vboxTimesheet.setVisible(false);
@@ -95,36 +98,36 @@ public class TimesheetFXMLController {
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         colBeginTime.setCellValueFactory(new PropertyValueFactory<>("beginTimeStamp"));
         colEndTime.setCellValueFactory(new PropertyValueFactory<>("endTimeStamp"));
-    }
+    } 
      
     @FXML
-    private void doLogin(ActionEvent event){
+    private void doLogin(ActionEvent event) {
         
-        if(txtUsername.getText().equals("")){
+        if (txtUsername.getText().equals("")) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Missing Username");
             alert.setContentText("Please enter a username");
             alert.show();
             vboxTimesheet.setVisible(false);
             return;
-        }
+        } 
         
-        if(timesheetService.userLogin(txtUsername.getText())){
-                System.out.println("User "+txtUsername.getText()+" successully logged in!");
-                btnLogin.setVisible(false);
-                btnLogout.setVisible(true);
-                txtUsername.setDisable(true);
-        }else if(timesheetService.newUser(txtUsername.getText(), txtUsername.getText().toUpperCase())){
-                System.out.println("New user "+txtUsername.getText()+" successully created!");
-        }else{
-                System.out.println("Something did not work!");
-                return;
-        }
+        if (timesheetService.userLogin(txtUsername.getText())) {
+            System.out.println("User " + txtUsername.getText() + " successully logged in!");
+            btnLogin.setVisible(false);
+            btnLogout.setVisible(true);
+            txtUsername.setDisable(true);
+        } else if (timesheetService.newUser(txtUsername.getText(), txtUsername.getText().toUpperCase())) {
+            System.out.println("New user " + txtUsername.getText() + " successully created!");
+        } else {
+            System.out.println("Something did not work!");
+            return;
+        } 
 
         lblEntries.setText(lblEntries.getText().replace("$cUser$", timesheetService.getCurrentUser().getName()));
         refreshTimesheetTable();
         vboxTimesheet.setVisible(true);
-    }
+    } 
 
     @FXML
     private void doLogout(ActionEvent event) {
@@ -132,25 +135,25 @@ public class TimesheetFXMLController {
         btnLogin.setVisible(true);
         btnLogout.setVisible(false);
         vboxTimesheet.setVisible(false);
-    }
+    } 
     
-    private void refreshTimesheetTable(){
+    private void refreshTimesheetTable() {
         
         ObservableList<TimesheetEntry> entryData = FXCollections.observableArrayList();
         
         List entries = timesheetService.getEntries();
         
-        if(entries.size()!=0){
+        if (entries.size() != 0) {
             entryData.addAll(entries);
             tblEntries.getItems().setAll(entries);
-        }
-    }
+        } 
+    } 
     
     @FXML
-    private void doAddEntry(){
+    private void doAddEntry() {
         System.out.println("add entry");
         timesheetService.createTimeSheetEntry(txtComment.getText());
         txtComment.clear();
         refreshTimesheetTable();
-    }
-}
+    } 
+} 

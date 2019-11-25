@@ -21,7 +21,7 @@ import java.sql.ResultSet;
  *
  * @author Jukka
  */
-public class DbTimesheetDao implements TimesheetDao{
+public class DbTimesheetDao implements TimesheetDao {
     
     private List<TimesheetEntry> entries;
     
@@ -32,11 +32,15 @@ public class DbTimesheetDao implements TimesheetDao{
     final private String createTimesheetEntry;
     final private String url;
     
-    public DbTimesheetDao() throws Exception{
+    public DbTimesheetDao(boolean debug) throws Exception {
         
-        url = "jdbc:sqlite:timesheetTimesheetEntries.db";
+        if (debug) {
+            url = "jdbc:sqlite::memory:";
+        } else {
+            url = "jdbc:sqlite:timesheetTimesheetEntries.db";
+        } 
         
-        createTimesheetEntriesTable = "CREATE TABLE IF NOT EXISTS timesheetentries (\n"
+        createTimesheetEntriesTable = "CREATE TABLE if  NOT EXISTS timesheetentries (\n"
                                     + "id integer PRIMARY KEY, \n"
                                     + "comment text, \n"
                                     + "complete integer NOT NULL, \n"
@@ -51,58 +55,60 @@ public class DbTimesheetDao implements TimesheetDao{
         createTimesheetEntry = "INSERT INTO timesheetentries (id, comment, complete, uname, begin, end) "
                                     + "VALUES(?, ?, ?, ?, ?, ?);";
            
-        try{
+        try {
             // register the driver 
             String sDriverName = "org.sqlite.JDBC";
             Class.forName(sDriverName);
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 Statement stmt = conn.createStatement();
                 stmt.execute(createTimesheetEntriesTable);
                 conn.close();
-            }
-        } catch(SQLException ex){
+            } 
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } 
         refreshEntries();
-    }
+    } 
     
-    private void refreshEntries() throws Exception{
+    private void refreshEntries() throws Exception {
         
-        if(entries==null) entries = new ArrayList<>();
+        if (entries == null) {
+            entries = new ArrayList<>();
+        }
         
-        try{
+        try {
             // register the driver 
             String sDriverName = "org.sqlite.JDBC";
             Class.forName(sDriverName);
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(getAllTimesheetEntries);
                 
-                while(rs.next()){
+                while (rs.next()) {
                     entries.add(new TimesheetEntry(rs.getInt("id"),
                                                    rs.getString("comment"),
                                                    rs.getBoolean("complete"),
                                                    rs.getString("uname"),
                                                    rs.getString("begin"),
                                                    rs.getString("end")));
-                }
+                } 
                 conn.close();
-            }
-        } catch(SQLException ex){
+            } 
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
+        } 
+    } 
     
-    private void update() throws Exception{
-        try{
+    private void update() throws Exception {
+        try {
             // register the driver 
             String sDriverName = "org.sqlite.JDBC";
             Class.forName(sDriverName);
             conn = DriverManager.getConnection(url);
-            if(conn != null){
-                for(TimesheetEntry entry:entries){
+            if (conn != null) {
+                for (TimesheetEntry entry:entries) {
                     PreparedStatement pstmt = conn.prepareStatement(createTimesheetEntry);
                     pstmt.setInt(1, entry.getId());
                     pstmt.setString(2, entry.getComment());
@@ -111,46 +117,46 @@ public class DbTimesheetDao implements TimesheetDao{
                     pstmt.setString(5, entry.getBeginTime());
                     pstmt.setString(6, entry.getEndTime());
                     pstmt.executeUpdate();
-                } 
+                }  
                 conn.close();
-            }    
-        } catch(SQLException ex){
+            }     
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
+        } 
+    } 
     
-    private int generateId() {
-        if(entries.isEmpty()){
+    private int generateId()  {
+        if (entries.isEmpty()) {
             return 1;
-        } else{
+        }   else {
             return entries.size() + 1;
-        }
-    }
+        } 
+    } 
     
-    private boolean deleteEntry(int id) {
+    private boolean deleteEntry(int id)  {
         return false;
-    }
+    } 
     
     @Override
-    public List<TimesheetEntry> getEntries(){
+    public List<TimesheetEntry> getEntries() {
         return entries;
-    }
+    } 
 
     @Override
-    public boolean create(TimesheetEntry entry) throws Exception {
+    public boolean create(TimesheetEntry entry) throws Exception  {
         entry.setId(generateId());
         entries.add(entry);
         update();
         return false;
-    }
+    } 
 
     @Override
-    public void setComplete(int id) throws Exception {
-        for (TimesheetEntry e : entries) {
-            if (e.getId() == id) {
+    public void setComplete(int id) throws Exception  {
+        for (TimesheetEntry e : entries)  {
+            if  (e.getId()  ==  id)  {
                 e.setComplete();
-            }
-        }
+            } 
+        } 
         update();
-    }
-}
+    } 
+} 

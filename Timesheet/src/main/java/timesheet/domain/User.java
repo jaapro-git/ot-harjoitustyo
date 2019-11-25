@@ -15,16 +15,16 @@ public class User {
     private String name;
     private String type;
     
-    public User(String uname, String name){
+    public User(String uname, String name) {
         this.uname = uname;
         this.name = name;
     }
     
-    public String getName(){
+    public String getName() {
         return this.name;
     }
     
-    public String getUsername(){
+    public String getUsername() {
         return this.uname;
     }
 }

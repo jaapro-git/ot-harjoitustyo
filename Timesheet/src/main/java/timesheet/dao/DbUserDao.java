@@ -20,7 +20,7 @@ import java.sql.ResultSet;
  *
  * @author Jukka
  */
-public class DbUserDao implements UserDao{
+public class DbUserDao implements UserDao {
     
     private List<User> users;
     
@@ -32,8 +32,13 @@ public class DbUserDao implements UserDao{
     final private String selectCurrentUser;
     final private String createUser;
     
-    public DbUserDao() throws Exception{
-        url = "jdbc:sqlite:timesheetUsers.db";
+    public DbUserDao(boolean debug) throws Exception {
+        
+        if (debug) {
+            url = "jdbc:sqlite::memory:";
+        } else {
+            url = "jdbc:sqlite:timesheetUsers.db";
+        } 
         
         createUsersTable = "CREATE TABLE IF NOT EXISTS users (\n"
                          + " uname text PRIMARY KEY, \n"
@@ -50,88 +55,90 @@ public class DbUserDao implements UserDao{
         createUser = "INSERT INTO users (uname, name) "
                                 + "VALUES(?, ?);";
            
-        try{
+        try {
             // register the driver 
             String sDriverName = "org.sqlite.JDBC";
             Class.forName(sDriverName);
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 Statement stmt = conn.createStatement();
                 stmt.execute(createUsersTable);
                 
                 conn.close();
-            }
-        } catch(SQLException ex){
+            } 
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
+        } 
+    } 
     
-    //private void update() throws Exception{
+    //private void update() throws Exception {
     //    
-    //}
+    //} 
     
-    public User getSingleUser(String uname){
-        for(User u:users){
-            if(u.getUsername().equals(uname)) return u;
-        }
+    public User getSingleUser(String uname) {
+        for (User u:users) {
+            if (u.getUsername().equals(uname)) {
+                return u;
+            }
+        } 
         return null;
-    }
+    } 
     
     @Override
-    public List<User> getUsers(){
+    public List<User> getUsers() {
                 
-        try{
+        try {
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(selectAllUsers);
                 
-                while(rs.next()){
+                while (rs.next()) {
                     users.add(new User(rs.getString("uname"), rs.getString("name")));
-                }
+                } 
                 
                 conn.close();
-            }                              
-        } catch(SQLException ex){
+            }                               
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } 
         
         return null;
-    }
+    } 
     
     @Override
-    public User findByUname(String uname){
+    public User findByUname(String uname) {
         
         User user;
                 
-        try{
+        try {
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 PreparedStatement pstmt = conn.prepareStatement(selectCurrentUser);
                 pstmt.setString(1, uname);
                 ResultSet rs = pstmt.executeQuery();
 
-                if(rs.next()){
+                if (rs.next()) {
                     user = new User(rs.getString("uname"), rs.getString("name"));
-                }else{
+                } else {
                     return null;
-                }
+                } 
                 conn.close();
                 return user;
-            }                              
-        } catch(SQLException ex){
+            }                               
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } 
         
         return null;
-    }
+    } 
     
     @Override
-    public boolean create(User user) throws Exception{
+    public boolean create(User user) throws Exception {
                    
-        try{
+        try {
             conn = DriverManager.getConnection(url);
-            if(conn != null){               
+            if (conn != null) {               
                 PreparedStatement pstmt = conn.prepareStatement(createUser);
                 pstmt.setString(1, user.getUsername());
                 pstmt.setString(2, user.getName());
@@ -139,10 +146,10 @@ public class DbUserDao implements UserDao{
                 
                 conn.close();
                 return true;
-            }                              
-        } catch(SQLException ex){
+            }                               
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        } 
         return false;
-    }
-}
+    } 
+} 

@@ -12,7 +12,7 @@ import java.time.Instant;
  *
  * @author Jukka
  */
-public class TimesheetEntry extends Object{
+public class TimesheetEntry extends Object {
     
     private int id;
     private String comment;
@@ -21,69 +21,69 @@ public class TimesheetEntry extends Object{
     private Instant beginTimeStamp;
     private Instant endTimeStamp;
       
-    public TimesheetEntry(int id, String comment, boolean complete, String user, String beginTime, String endTime){
+    public TimesheetEntry(int id, String comment, boolean complete, String user, String beginTime, String endTime) {
         this.id = id;
         this.comment = comment;
         this.complete = complete;
         this.username = user;
         this.beginTimeStamp = Instant.parse(beginTime);
         this.endTimeStamp = Instant.parse(endTime);
-    }
+    } 
     
-    public TimesheetEntry(String user, String comment){
+    public TimesheetEntry(String user, String comment) {
         this.id = 123;
         this.comment = comment;
         this.complete = false;
         this.username = user;
         this.beginTimeStamp = Instant.now();
         this.endTimeStamp = Instant.MAX;
-    }
+    } 
     
-    public void setComment(String comment){
+    public void setComment(String comment) {
         this.comment = comment;
-    }
+    } 
     
-    public String getComment(){
+    public String getComment() {
         return this.comment;
-    }
+    } 
     
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
-    }
+    } 
     
-    public int getId(){
+    public int getId() {
         return this.id;
-    }
+    } 
     
-    public boolean getComplete(){
+    public boolean getComplete() {
         return this.complete;
-    }
+    } 
     
-    public String getUsername(){
+    public String getUsername() {
         return this.username;
-    }
+    } 
     
-    public String getBeginTime(){
+    public String getBeginTime() {
         return this.beginTimeStamp.toString();
-    }
+    } 
         
-    public String getEndTime(){
+    public String getEndTime() {
         return this.endTimeStamp.toString();
-    }
+    } 
     
-    public void setComplete(){
+    public void setComplete() {
         this.complete = true;
         this.endTimeStamp = Instant.now();
-    }
+    } 
     
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)  {
 
-        if (!(obj instanceof TimesheetEntry)) {
+        if (!(obj instanceof TimesheetEntry))  {
             return false;
-        }
+        } 
 
         TimesheetEntry other = (TimesheetEntry) obj;
         return id == other.id;
-    }
-}
+    } 
+} 

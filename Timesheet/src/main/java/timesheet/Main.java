@@ -16,7 +16,7 @@ import timesheet.dao.*;
 
 public class Main {
     
-    public static void main(String[] args){
+    public static void main(String[] args) {
         
         Scanner sc = new Scanner(System.in);
         
@@ -26,16 +26,16 @@ public class Main {
         System.out.print("Enter name: ");
         String name = sc.nextLine();
         
-        try{
-            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(), new DbUserDao());
+        try {
+            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
             if(cliSession.userLogin(uname)){
-                System.out.println("User "+uname+" successully logged in!");
+                System.out.println("User " + uname + " successully logged in!");
             }else if(cliSession.newUser(uname, name)){
-                System.out.println("New user "+uname+" successully created!");
+                System.out.println("New user " + uname + " successully created!");
             }else{
                 System.out.println("Something did not work!");
             }    
-        } catch(Exception ex){
+        } catch (Exception ex) {
             
         }
     }
