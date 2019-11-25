@@ -22,7 +22,7 @@ Graafinen käyttöliittymä on toteutettu määrittelemällä käyttöliittymän
 
 Sovelluksen loogisen datamallin muodostavat luokat [User](https://github.com/mluukkai/OtmTodoApp/blob/master/src/main/java/todoapp/domain/User.java) ja [TimesheetEntry](https://github.com/mluukkai/OtmTodoApp/blob/master/src/main/java/todoapp/domain/Todo.java), jotka kuvaavat käyttäjiä ja käyttäjien tuntikirjauksia:
 
-<img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-2.png" width="400">
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/timesheet_luokkakaavio.png" width="400">
 
 Toiminnallisista kokonaisuuksista vastaa luokkan [TimesheetService](https://github.com/mluukkai/OtmTodoApp/blob/master/src/main/java/todoapp/domain/TodoService.java) ainoa olio. Luokka tarjoaa kaikille käyttäliittymän toiminnoille oman metodin.
 
