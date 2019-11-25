@@ -4,7 +4,7 @@
 
 Ohjelman rakenne noudattelee kolmitasoista kerrosarkkitehtuuria, ja koodin pakkausrakenne on seuraava:
 
-<img src="https://raw.githubusercontent.com/mluukkai/ohjelmistotekniikka-kevat2019/master/web/images/l-11.png" width="160">
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/timesheet_luokkakaavio.png" width="160">
 
 Pakkaus _timesheet.ui_ sisältää JavaFX:llä toteutetun käyttöliittymän _timesheet.domain_ sovelluslogiikan ja _timesheet.dao_ tietojen pysyväistallennuksesta vastaavan koodin.
 
