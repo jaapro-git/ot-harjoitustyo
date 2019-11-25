@@ -7,7 +7,7 @@ Sovelluksen avulla käyttäjät voivat ylläpitää tuntikirjauksia. Jokainen k�
 
 [Arkkitehtuuri](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
-[Testaus](hhttps://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
+[Testaus](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
 
 [Työaikakirjanpito](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
