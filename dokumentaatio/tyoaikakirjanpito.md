@@ -10,3 +10,4 @@
 | 20.11 | 3    | käyttöliittymä|
 | 21.11 | 3    | tietokantatallennusta|
 | 22.11 | 3    | dokumentaatio|
+| 25.11 | 4    | dokumentaatio, testit ja koodin siivous|
