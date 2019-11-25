@@ -5,9 +5,7 @@
  */
 package timesheet;
 
-import timesheet.domain.*;
-import java.util.*;
-import timesheet.dao.*;
+import timesheet.ui.*;
 
 /**
  *
@@ -18,25 +16,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Scanner sc = new Scanner(System.in);
+        timesheet.ui.TimesheetUi.main(args);
         
-        //temporary cli
-        System.out.print("Enter username: ");
-        String uname = sc.nextLine();
-        System.out.print("Enter name: ");
-        String name = sc.nextLine();
-        
-        try {
-            TimesheetService cliSession = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
-            if(cliSession.userLogin(uname)){
-                System.out.println("User " + uname + " successully logged in!");
-            }else if(cliSession.newUser(uname, name)){
-                System.out.println("New user " + uname + " successully created!");
-            }else{
-                System.out.println("Something did not work!");
-            }    
-        } catch (Exception ex) {
-            
-        }
     }
 }
