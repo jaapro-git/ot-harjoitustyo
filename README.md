@@ -3,13 +3,13 @@
 Sovelluksen avulla käyttäjät voivat ylläpitää tuntikirjauksia. Jokainen käyttäjä näkee vain omat kirjauksensa. Kirjaukset tallentuvat SQLite-tietokantaan.
 
 ## Dokumentaatio
-[Vaatimusmäärittely](https://github.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/vaatimusmaarittely.md)
+[Vaatimusmäärittely](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 
-[Arkkitehtuuri](https://github.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/arkkitehtuuri.md)
+[Arkkitehtuuri](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
-[Testaus](https://github.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/testaus.md)
+[Testaus](hhttps://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/testaus.md)
 
-[Työaikakirjanpito](https://github.com/jaapro-git/ot-harjoitustyo/master/dokumentaatio/tyoaikakirjanpito.md)
+[Työaikakirjanpito](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
 <!-- # Ohjelmistotuotanto syksy 2019
 
