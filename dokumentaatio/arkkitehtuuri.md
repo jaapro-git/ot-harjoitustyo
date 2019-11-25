@@ -44,13 +44,13 @@ Sovellus tallettaa käyttäjien ja tuntikirjausten tiedot SQLite tietokantaan.
 
 Kuvataan seuraavaksi sovelluksen toimintalogiikka muutaman päätoiminnallisuuden osalta sekvenssikaaviona.
 
-#### käyttäjän kirjaantuminen
+#### Käyttäjän kirjautuminen
 
 <!-- Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja klikataan _btnLogin_ etenee sovelluksen kontrolli seuraavasti:
 
 <img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-4b.png" width="750"> -->
 
-#### uuden käyttäjän luominen
+#### Uuden käyttäjän luominen
 
 <!-- Jos annettua käyttäjätunnusta ei ole vielä olemassa, sovellus kysyy halutaanko käyttäjä luoda. Sen lisäksi sovellus pyytää käyttäjätunnusta vastaavan nimen.
 
@@ -62,5 +62,5 @@ Kuvataan seuraavaksi sovelluksen toimintalogiikka muutaman päätoiminnallisuude
 
 <img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-6.png" width="750"> -->
 
-## Ohjelman rakenteeseen jääneet heikkoudet
+<!-- ## Ohjelman rakenteeseen jääneet heikkoudet -->
 
