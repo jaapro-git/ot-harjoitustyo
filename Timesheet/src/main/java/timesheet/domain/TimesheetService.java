@@ -37,18 +37,30 @@ public class TimesheetService {
         return true;
     } 
     
+    public boolean deleteTimeSheetEntry(int id) {
+                
+        try {
+            timesheetData.delete(id);
+        } catch (Exception ex) {
+            return false;
+        } 
+        return true;
+    } 
+    
     public List<TimesheetEntry> getEntries() {
         if (cUser == null) {
             return new ArrayList<>();
         }
-       
+        
+        List<TimesheetEntry> uiList = new ArrayList<TimesheetEntry>();
         List<TimesheetEntry> entries = timesheetData.getEntries();
-        for (int i = 0; i < entries.size(); i++) {
-            if (entries.get(i).getUsername() != this.cUser.getUsername()) {
-                entries.remove(i);
-            } 
-        } 
-        return entries;
+        
+        for(TimesheetEntry e:entries) {
+            if (e.getUsername().equals(cUser.getUsername())){
+                uiList.add(e);
+            }
+        }
+        return uiList;
     }     
     
     public void setComplete(int id) {
@@ -76,7 +88,9 @@ public class TimesheetService {
     } 
     
     public void userLogout() {
-        cUser = null;
+        this.cUser = null;
+        this.userData = null;
+        this.timesheetData = null;
     } 
     
     public boolean newUser(String uname, String name) {

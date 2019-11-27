@@ -52,7 +52,7 @@ public class DbUserDao implements UserDao {
                                  + "FROM users "
                                  + "WHERE uname = ?;";
         
-        createUser = "INSERT INTO users (uname, name) "
+        createUser = "INSERT OR REPLACE INTO users (uname, name) "
                                 + "VALUES(?, ?);";
            
         try {

@@ -19,5 +19,7 @@ public interface TimesheetDao {
     List<TimesheetEntry> getEntries();
     
     void setComplete(int id) throws Exception;
+
+    public boolean delete(int id) throws Exception;
     
 }

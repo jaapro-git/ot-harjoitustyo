@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.util.Collections;
 
 /**
  *
@@ -30,6 +31,7 @@ public class DbTimesheetDao implements TimesheetDao {
     final private String createTimesheetEntriesTable;
     final private String getAllTimesheetEntries;
     final private String createTimesheetEntry;
+    final private String deleteTimesheetEntry;
     final private String url;
     
     public DbTimesheetDao(boolean debug) throws Exception {
@@ -52,7 +54,11 @@ public class DbTimesheetDao implements TimesheetDao {
         getAllTimesheetEntries = "SELECT id, comment, complete, uname, begin, end "
                                + "FROM timesheetentries;";
         
-        createTimesheetEntry = "INSERT INTO timesheetentries (id, comment, complete, uname, begin, end) "
+        deleteTimesheetEntry = "DELETE "
+                             + "FROM timesheetentries "
+                             + "WHERE id = ?";
+        
+        createTimesheetEntry = "INSERT OR REPLACE INTO timesheetentries (id, comment, complete, uname, begin, end) "
                                     + "VALUES(?, ?, ?, ?, ?, ?);";
            
         try {
@@ -95,6 +101,7 @@ public class DbTimesheetDao implements TimesheetDao {
                                                    rs.getString("end")));
                 } 
                 conn.close();
+                Collections.sort(entries);
             } 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -128,13 +135,9 @@ public class DbTimesheetDao implements TimesheetDao {
     private int generateId()  {
         if (entries.isEmpty()) {
             return 1;
-        }   else {
-            return entries.size() + 1;
+        } else {
+            return entries.get(entries.size()-1).getId() + 1;
         } 
-    } 
-    
-    private boolean deleteEntry(int id)  {
-        return false;
     } 
     
     @Override
@@ -147,6 +150,27 @@ public class DbTimesheetDao implements TimesheetDao {
         entry.setId(generateId());
         entries.add(entry);
         update();
+        return false;
+    } 
+    
+    @Override
+    public boolean delete(int id) throws Exception  {
+        try {
+            // register the driver 
+            String sDriverName = "org.sqlite.JDBC";
+            Class.forName(sDriverName);
+            conn = DriverManager.getConnection(url);
+            if (conn != null) {
+                PreparedStatement pstmt = conn.prepareStatement(deleteTimesheetEntry);
+                pstmt.setInt(1, id);
+                pstmt.executeUpdate();
+                conn.close();
+                entries.removeIf(e -> e.getId() == id);
+            }     
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        } 
+        
         return false;
     } 
 
