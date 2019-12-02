@@ -20,22 +20,22 @@ Sovellus aukeaa päänäkymään, jossa vanhoja kirjauksia voit katsella tai poi
 
 ### Ennen kirjautumista
 
-- käyttäjä voi luoda järjestelmään käyttäjätunnuksen
+- käyttäjä voi luoda järjestelmään käyttäjätunnuksen (toteutettu)
   - käyttäjätunnuksen täytyy olla uniikki ja pituudeltaan vähintään 3 merkkiä
 
-- käyttäjä voi kirjautua järjestelmään
+- käyttäjä voi kirjautua järjestelmään (toteutettu)
   - kirjautuminen onnistuu syötettäessä olemassaoleva käyttäjätunnus kirjautumislomakkeelle
   - jos käyttäjää ei olemassa, ilmoittaa järjestelmä tästä
 
-### Kirjautumisen jälkeen
+### Kirjautumisen jälkeen 
 
-- käyttäjä näkee omat tehdyt kirjaukset
+- käyttäjä näkee omat tehdyt kirjaukset (toteutettu)
 
-- käyttäjä voi poistaa vanhan kirjauksen
+- käyttäjä voi poistaa vanhan kirjauksen (toteutettu)
 
-- käyttäjä voi aloittaa uuden kirjauksen tallentamisen
+- käyttäjä voi aloittaa uuden kirjauksen tallentamisen (toteutettu)
 
-- käyttäjää voi vaihtaa
+- käyttäjää voi vaihtaa (toteutettu)
 
 ## Jatkokehitysideoita
 
