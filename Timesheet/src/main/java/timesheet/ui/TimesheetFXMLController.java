@@ -156,7 +156,7 @@ public class TimesheetFXMLController {
     } 
 
     @FXML
-    private void doLogout() throws Exception{
+    private void doLogout() throws Exception {
         txtUsername.setDisable(false);
         btnLogin.setVisible(true);
         btnLogout.setVisible(false);

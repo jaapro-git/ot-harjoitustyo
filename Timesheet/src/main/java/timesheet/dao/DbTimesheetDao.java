@@ -136,7 +136,7 @@ public class DbTimesheetDao implements TimesheetDao {
         if (entries.isEmpty()) {
             return 1;
         } else {
-            return entries.get(entries.size()-1).getId() + 1;
+            return entries.get(entries.size() - 1).getId() + 1;
         } 
     } 
     
@@ -146,11 +146,12 @@ public class DbTimesheetDao implements TimesheetDao {
     } 
 
     @Override
-    public boolean create(TimesheetEntry entry) throws Exception  {
-        entry.setId(generateId());
+    public int create(TimesheetEntry entry) throws Exception  {
+        int id = generateId();
+        entry.setId(id);
         entries.add(entry);
         update();
-        return false;
+        return id;
     } 
     
     @Override

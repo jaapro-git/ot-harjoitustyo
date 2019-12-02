@@ -23,6 +23,7 @@ public class TimesheetTest {
     
     static String uname;
     static String varUname;
+    static String varUname2;
     static String name;
     static TimesheetService session;
     
@@ -32,16 +33,6 @@ public class TimesheetTest {
     @BeforeClass
     public static void setUpClass() {
         
-        varUname = "test"+java.time.Instant.now().toString();
-        uname = "test";
-        name = "Testaaja";
-        
-        try{
-            session = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
-            session.newUser(uname, name);
-        } catch (Exception ex){
-            
-        }
     }
     
     @AfterClass
@@ -50,12 +41,24 @@ public class TimesheetTest {
     
     @Before
     public void setUp() {
-        session.newUser(uname, name);
-        session.userLogin(uname);
+        varUname = "test"+java.time.Instant.now().toString();
+        varUname2 = "createtest"+java.time.Instant.now().toString();
+        uname = "tester";
+        name = "Testaaja";
+        
+        try{
+            session = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
+            session.newUser(uname, name);
+            session.newUser(varUname, name);
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+            fail("session not created");
+        }
     }
     
     @After
     public void tearDown() {
+        session.userLogout();
     }
 
     // TODO add test methods here.
@@ -66,11 +69,12 @@ public class TimesheetTest {
 
     @Test
     public void userCreateTest(){
-       
+        
         try{
-            if(session.newUser(varUname, name)) return;
+            if(session.newUser(varUname2, name)) return;
             fail("Something did not work!"); 
         } catch(Exception ex){
+            System.out.println(ex.getMessage());
             System.out.println("SQL Error!");
         }
     }
@@ -78,11 +82,11 @@ public class TimesheetTest {
     @Test
     public void userLoginTest(){
         
-        session.userLogout();
         try{
             if(session.userLogin(uname)) return;
             fail("Something did not work!"); 
         } catch(Exception ex){
+            System.out.println(ex.getMessage());
             System.out.println("SQL Error!");
         }
     }
@@ -90,9 +94,16 @@ public class TimesheetTest {
     @Test
     public void createEntries(){
         
-        session.createTimeSheetEntry("Test comment 1");
-        session.createTimeSheetEntry("Test comment 2");
-        session.createTimeSheetEntry("Test comment 3");
+        try{
+            if(session.userLogin(varUname)) {
+                session.createTimeSheetEntry("Test comment 1");
+                session.createTimeSheetEntry("Test comment 2");
+                session.createTimeSheetEntry("Test comment 3");                   
+            }  
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.out.println("SQL Error!");
+        }
         
         if(session.getEntries().size() == 3) return;
         fail("Something did not work!"); 
@@ -100,8 +111,57 @@ public class TimesheetTest {
     
     @Test
     public void listEntries(){
-        for(TimesheetEntry e:session.getEntries()){
-            if(e.getUsername() != uname) fail("Something did not work!");
+        if(session.userLogin(varUname)) {
+            for(TimesheetEntry e:session.getEntries()){
+                if(e.getUsername() != varUname) fail("Something did not work!");
+            }
         }
+    }
+    
+    @Test
+    public void userLogoutTest(){
+        
+        session.userLogin(uname);
+        session.userLogout();
+        if(session.getCurrentUser()==null) return;
+        fail("Something did not work!"); 
+    }
+    
+    @Test
+    public void deleteEntries(){
+        int count = 0;
+        try{
+            if(session.userLogin(varUname)) {
+                count = session.getEntries().size();
+                int id = session.createTimeSheetEntry("Test entry to be deleted");
+                session.deleteTimeSheetEntry(id);
+            }  
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.out.println("SQL Error!");
+        }
+        
+        if(session.getEntries().size() == count) return;
+        fail("Something did not work!"); 
+    }
+    
+    @Test
+    public void completeEntry(){
+        int id = 0;
+        try{
+            if(session.userLogin(varUname)) {
+                id = session.createTimeSheetEntry("Test entry to be completed");
+                session.setComplete(id);
+            }  
+        } catch(Exception ex){
+            System.out.println(ex.getMessage());
+            System.out.println("SQL Error!");
+        }
+        
+        for(TimesheetEntry e:session.getEntries()){
+            if(e.getId() == id && e.getComplete() == true) return;
+        }
+        
+        fail("Something did not work!"); 
     }
 }

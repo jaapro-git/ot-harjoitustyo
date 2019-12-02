@@ -20,6 +20,11 @@ public class User {
         this.name = name;
     }
     
+    public User() {
+        this.uname = null;
+        this.name = null;
+    }
+    
     public String getName() {
         return this.name;
     }

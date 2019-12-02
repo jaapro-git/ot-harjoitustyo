@@ -26,15 +26,17 @@ public class TimesheetService {
         this.userData = userData;
     } 
     
-    public boolean createTimeSheetEntry(String comment) {
+    public int createTimeSheetEntry(String comment) {
+        int id;
+        
         TimesheetEntry entry = new TimesheetEntry(cUser.getUsername(), comment);
         
         try {
-            timesheetData.create(entry);
+            id = timesheetData.create(entry);
         } catch (Exception ex) {
-            return false;
+            return -1;
         } 
-        return true;
+        return id;
     } 
     
     public boolean deleteTimeSheetEntry(int id) {
@@ -55,8 +57,8 @@ public class TimesheetService {
         List<TimesheetEntry> uiList = new ArrayList<TimesheetEntry>();
         List<TimesheetEntry> entries = timesheetData.getEntries();
         
-        for(TimesheetEntry e:entries) {
-            if (e.getUsername().equals(cUser.getUsername())){
+        for (TimesheetEntry e:entries) {
+            if (e.getUsername().equals(cUser.getUsername())) {
                 uiList.add(e);
             }
         }
