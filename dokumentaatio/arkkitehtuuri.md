@@ -46,21 +46,21 @@ Kuvataan seuraavaksi sovelluksen toimintalogiikka muutaman päätoiminnallisuude
 
 #### Käyttäjän kirjautuminen
 
-<!-- Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja klikataan _btnLogin_ etenee sovelluksen kontrolli seuraavasti:
+Kun kirjautumisnäkymässä on syötekenttään kirjoitettu käyttäjätunnus ja klikataan _btnLogin_ etenee sovelluksen kontrolli seuraavasti:
 
-<img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-4b.png" width="750"> -->
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/Timesheet Login.png" width="750">
 
 #### Uuden käyttäjän luominen
 
-<!-- Jos annettua käyttäjätunnusta ei ole vielä olemassa, sovellus kysyy halutaanko käyttäjä luoda. Sen lisäksi sovellus pyytää käyttäjätunnusta vastaavan nimen.
+Jos annettua käyttäjätunnusta ei ole vielä olemassa, sovellus kysyy halutaanko käyttäjä luoda. Sen lisäksi sovellus pyytää käyttäjätunnusta vastaavan nimen.
 
-<img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-5.png" width="750"> -->
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/Timesheet New User.png" width="750">
 
 #### Aikakirjauksen luominen
 
-<!-- Kirjautumisen jälkeen käyttäjä voi aloittaa uuden tuntikirjauksen luomisen antamalla kommentin ja painamalla _btnStart_ -nappia.
+Kirjautumisen jälkeen käyttäjä voi aloittaa uuden tuntikirjauksen luomisen antamalla kommentin ja painamalla _btnStart_ -nappia.
 
-<img src="https://raw.githubusercontent.com/mluukkai/OtmTodoApp/master/dokumentaatio/kuvat/a-6.png" width="750"> -->
+<img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/Timesheet New Entry.png" width="750">
 
 <!-- ## Ohjelman rakenteeseen jääneet heikkoudet -->
 
