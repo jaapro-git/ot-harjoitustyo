@@ -13,7 +13,7 @@ Sovelluksen avulla k채ytt채j채t voivat yll채pit채채 tuntikirjauksia. Jokainen k�
 
 ## Releaset
 
-[Viikko 5](https://github.com/mluukkai/OtmTodoApp/releases/tag/viikko5)
+[Viikko 5](https://github.com/jaapro-git/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Komentorivitoiminnot
 
