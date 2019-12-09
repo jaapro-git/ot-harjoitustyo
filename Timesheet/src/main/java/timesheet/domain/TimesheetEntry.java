@@ -26,6 +26,15 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
     private Instant endTimeStamp;
     private long totalTime;
       
+    /**
+     * Creates a new entry with all required data. Called when retrieving records from the database.
+     * @param id
+     * @param comment
+     * @param complete
+     * @param user
+     * @param beginTime
+     * @param endTime
+     */
     public TimesheetEntry(int id, String comment, boolean complete, String user, String beginTime, String endTime) {
         this.id = id;
         this.comment = comment;
@@ -42,8 +51,12 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         setTotalTime();
     } 
     
+    /**
+     * Creates a new entry during runtime.
+     * @param user
+     * @param comment
+     */
     public TimesheetEntry(String user, String comment) {
-        //this.id = 123;
         this.comment = comment;
         this.complete = false;
         this.username = user;
@@ -51,40 +64,76 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         this.endTimeStamp = null;
     } 
     
+    /**
+     *
+     * @param comment
+     */
     public void setComment(String comment) {
         this.comment = comment;
     } 
     
+    /**
+     *
+     * @return
+     */
     public String getComment() {
         return this.comment;
     } 
     
+    /**
+     *
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     } 
     
+    /**
+     *
+     * @return
+     */
     public int getId() {
         return this.id;
     } 
     
+    /**
+     *
+     * @return
+     */
     public boolean getComplete() {
         return this.complete;
     } 
     
+    /**
+     *
+     * @return
+     */
     public String getUsername() {
         return this.username;
     } 
     
+    /**
+     *
+     * @return
+     */
     public String getBeginTime() {
         return this.beginTimeStamp.toString();
     } 
     
+    /**
+     * Returns the entry begin time with the local timezone and European formatting.
+     * @return
+     */
     public String getBeginTimeFormatted() {
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneId.systemDefault());
         
         return formatter.format(this.beginTimeStamp);
     } 
         
+    /**
+     *
+     * @return
+     */
     public String getEndTime() {
         if (this.endTimeStamp == null) {
             return "";
@@ -93,6 +142,10 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         }
     } 
     
+    /**
+     * Returns the entry end time with the local timezone and European formatting.
+     * @return
+     */
     public String getEndTimeFormatted() {
         if (this.endTimeStamp == null) {
             return "";
@@ -103,12 +156,18 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         }
     }
     
+    /**
+     *
+     */
     public void setComplete() {
         this.complete = true;
         this.endTimeStamp = Instant.now();
         setTotalTime();
     } 
     
+    /**
+     * Calculates the spent time for completed entries in minutes
+     */
     public void setTotalTime() {
         if (getComplete()) {
             Duration timeDiff = Duration.between(beginTimeStamp, endTimeStamp);
@@ -116,6 +175,10 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         }
     }
     
+    /**
+     * Returns the total time in hours for the UI
+     * @return
+     */
     public String getTotalTime() {
         if (getComplete()) {
             return String.valueOf((int) Math.ceil(this.totalTime / 60.0));

@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 
 import java.net.URL;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.stage.WindowEvent;
 
 import timesheet.dao.DbTimesheetDao;
 import timesheet.dao.DbUserDao;
@@ -43,6 +47,7 @@ public class TimesheetUi extends Application {
             Stage stage = new Stage();
             stage.setTitle("Timesheet");
             stage.setScene(new Scene(root));
+            stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,5 +58,22 @@ public class TimesheetUi extends Application {
     @Override
     public void stop() {
         
+    }
+    
+    private void closeWindowEvent(WindowEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.getButtonTypes().remove(ButtonType.OK);
+        alert.getButtonTypes().add(ButtonType.CANCEL);
+        alert.getButtonTypes().add(ButtonType.YES);
+        alert.setTitle("Exit Timesheet");
+        alert.setHeaderText("Really exit?");
+        alert.setContentText("Remember to complete tasks before closing");
+        //alert.initOwner(primaryStage.getOwner());
+        Optional<ButtonType> res = alert.showAndWait();
+
+        if(res.isPresent()) {
+            if(res.get().equals(ButtonType.CANCEL))
+                event.consume();
+        }
     }
 }

@@ -19,13 +19,22 @@ public class TimesheetService {
     private UserDao userData;
     private TimesheetDao timesheetData;
     
+    /**
+     * Constructor
+     * @param timesheetData     An instance of TimesheetDao
+     * @param userData          An instance of UserDao
+     */
     public TimesheetService(TimesheetDao timesheetData, UserDao userData) {
         
-        //this.cUser = cUser;
         this.timesheetData = timesheetData;
         this.userData = userData;
     } 
     
+    /**
+     * Creates a new timesheet entry from the UI.
+     * @param comment           A comment for the new entry
+     * @return
+     */
     public int createTimeSheetEntry(String comment) {
         int id;
         
@@ -39,6 +48,11 @@ public class TimesheetService {
         return id;
     } 
     
+    /**
+     * Deletes an existing entry,
+     * @param id                Id of the selected timesheet entry
+     * @return
+     */
     public boolean deleteTimeSheetEntry(int id) {
                 
         try {
@@ -49,6 +63,10 @@ public class TimesheetService {
         return true;
     } 
     
+    /**
+     * Refreshes the entry list from UI and filters it for the current user.
+     * @return
+     */
     public List<TimesheetEntry> getEntries() {
         if (cUser == null) {
             return new ArrayList<>();
@@ -65,6 +83,10 @@ public class TimesheetService {
         return uiList;
     }     
     
+    /**
+     * Sets the selected entry as completed
+     * @param id                Id of the selected entry
+     */
     public void setComplete(int id) {
         try {
             timesheetData.setComplete(id);
@@ -73,6 +95,11 @@ public class TimesheetService {
         }     
     } 
         
+    /**
+     * Initiate a login for the given user
+     * @param uname                 Username
+     * @return
+     */
     public boolean userLogin(String uname) {
         User user = userData.findByUname(uname);
         
@@ -85,16 +112,29 @@ public class TimesheetService {
         return true;
     } 
     
+    /**
+     *
+     * @return
+     */
     public User getCurrentUser() {
         return cUser;
     } 
     
+    /**
+     * Initializes the controller instance
+     */
     public void userLogout() {
         this.cUser = null;
         this.userData = null;
         this.timesheetData = null;
     } 
     
+    /**
+     * Creates a new users in the database
+     * @param uname                 Username
+     * @param name                  Real name
+     * @return
+     */
     public boolean newUser(String uname, String name) {
         
         //already exists?

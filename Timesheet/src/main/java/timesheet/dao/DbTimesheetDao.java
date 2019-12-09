@@ -34,6 +34,11 @@ public class DbTimesheetDao implements TimesheetDao {
     final private String deleteTimesheetEntry;
     final private String url;
     
+    /**
+     * Creates the timesheet entry db table if it does not exist and refreshes it with data.
+     * @param debug
+     * @throws Exception
+     */
     public DbTimesheetDao(boolean debug) throws Exception {
         
         if (debug) {
@@ -140,11 +145,21 @@ public class DbTimesheetDao implements TimesheetDao {
         } 
     } 
     
+    /**
+     *
+     * @return
+     */
     @Override
     public List<TimesheetEntry> getEntries() {
         return entries;
     } 
 
+    /**
+     * Creates a new entry in the database and returns the new id.
+     * @param entry
+     * @return
+     * @throws Exception
+     */
     @Override
     public int create(TimesheetEntry entry) throws Exception  {
         int id = generateId();
@@ -154,6 +169,12 @@ public class DbTimesheetDao implements TimesheetDao {
         return id;
     } 
     
+    /**
+     * Deletes an entry from the database
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean delete(int id) throws Exception  {
         try {
@@ -175,6 +196,11 @@ public class DbTimesheetDao implements TimesheetDao {
         return false;
     } 
 
+    /**
+     * Sets an antry as completed and updates the information in the database
+     * @param id
+     * @throws Exception
+     */
     @Override
     public void setComplete(int id) throws Exception  {
         for (TimesheetEntry e : entries)  {

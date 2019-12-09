@@ -1,11 +1,5 @@
 package timesheet.ui;
 
-
-
-
-
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,6 +36,19 @@ import javafx.scene.layout.VBox;
 import timesheet.dao.DbTimesheetDao;
 import timesheet.dao.DbUserDao;
 import timesheet.domain.TimesheetEntry;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
  
 public class TimesheetFXMLController {
     
@@ -94,6 +101,10 @@ public class TimesheetFXMLController {
     private Button btnComplete;
     @FXML
     private VBox vboxAdd;
+    @FXML
+    private Button btnExport;
+    @FXML
+    private MenuItem menuExit;
 
      
     // Add a public no-args constructor
@@ -211,4 +222,61 @@ public class TimesheetFXMLController {
             refreshTimesheetTable();
         }
     }
+
+    @FXML
+    private void doExport() {
+        
+        // Create a Workbook
+        Workbook workbook = new XSSFWorkbook();
+        // Create a Sheet
+        Sheet sheet = workbook.createSheet("timesheet");
+        
+        // Create a header row
+        Row headerRow = sheet.createRow(0);    
+        ///Set titles of columns
+        for (int i=0; i<tblEntries.getColumns().size();i++) {
+            headerRow.createCell(i).setCellValue(tblEntries.getColumns().get(i).getText());
+        }
+        
+        //Write entries data
+        for (int rNum = 0; rNum < tblEntries.getItems().size(); rNum++) {
+            
+            Row row = sheet.createRow(rNum + 1);
+            for (int cNum = 0; cNum < tblEntries.getColumns().size(); cNum++) {
+                Object cellValue = tblEntries.getColumns().get(cNum).getCellObservableValue(rNum).getValue();
+
+                try {
+                    if (cellValue != null && Double.parseDouble(cellValue.toString()) != 0.0) {
+                        row.createCell(cNum).setCellValue(Double.parseDouble(cellValue.toString()));
+                    }
+                } catch (  NumberFormatException e ){
+                    row.createCell(cNum).setCellValue(cellValue.toString());
+                }
+            }
+        }
+        
+        try {
+            //String formatted = DateTimeFormatter.ofPattern("yyyyMMddkkmmss",Locale.GERMAN).format(Instant.now());
+            FileOutputStream fileOut = new FileOutputStream("timesheet_export_"+Long.toString(Instant.now().getEpochSecond())+".xlsx");
+            workbook.write(fileOut);
+            fileOut.close();
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Timesheet Successfully Exported");
+            alert.setHeaderText("A new file was created in the root folder");
+            alert.show();
+        } catch (IOException ex) {
+            
+        }
+
+    }
+
+    @FXML
+    private void doExit() {
+        Window window = root.getScene().getWindow();  // Get the primary stage from your Application class
+
+        window.fireEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSE_REQUEST));
+    }
+    
+    
 } 

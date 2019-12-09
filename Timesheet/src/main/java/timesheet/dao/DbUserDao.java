@@ -32,6 +32,11 @@ public class DbUserDao implements UserDao {
     final private String selectCurrentUser;
     final private String createUser;
     
+    /**
+     * Creates the users db table if it does not exist and refreshes it with data.
+     * @param debug
+     * @throws Exception
+     */
     public DbUserDao(boolean debug) throws Exception {
         
         if (debug) {
@@ -74,6 +79,12 @@ public class DbUserDao implements UserDao {
     //private void update() throws Exception {
     //    
     //} 
+
+    /**
+     * Returns a user for the given username if it exists
+     * @param uname
+     * @return
+     */
     
     public User getSingleUser(String uname) {
         for (User u:users) {
@@ -84,6 +95,10 @@ public class DbUserDao implements UserDao {
         return null;
     } 
     
+    /**
+     * Returns a list of users
+     * @return
+     */
     @Override
     public List<User> getUsers() {
                 
@@ -106,6 +121,11 @@ public class DbUserDao implements UserDao {
         return null;
     } 
     
+    /**
+     * Returns a user from the database for the given username if it exists
+     * @param uname
+     * @return
+     */
     @Override
     public User findByUname(String uname) {
         
@@ -133,6 +153,12 @@ public class DbUserDao implements UserDao {
         return null;
     } 
     
+    /**
+     * Creates a new user and updates it in the database
+     * @param user
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean create(User user) throws Exception {
                    
