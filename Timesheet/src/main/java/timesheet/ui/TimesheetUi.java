@@ -62,13 +62,9 @@ public class TimesheetUi extends Application {
     
     private void closeWindowEvent(WindowEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.getButtonTypes().remove(ButtonType.OK);
-        alert.getButtonTypes().add(ButtonType.CANCEL);
-        alert.getButtonTypes().add(ButtonType.YES);
         alert.setTitle("Exit Timesheet");
         alert.setHeaderText("Really exit?");
         alert.setContentText("Remember to complete tasks before closing");
-        //alert.initOwner(primaryStage.getOwner());
         Optional<ButtonType> res = alert.showAndWait();
 
         if(res.isPresent()) {
