@@ -67,9 +67,10 @@ public class TimesheetUi extends Application {
         alert.setContentText("Remember to complete tasks before closing");
         Optional<ButtonType> res = alert.showAndWait();
 
-        if(res.isPresent()) {
-            if(res.get().equals(ButtonType.CANCEL))
+        if (res.isPresent()) {
+            if (res.get().equals(ButtonType.CANCEL)) {
                 event.consume();
+            }
         }
     }
 }

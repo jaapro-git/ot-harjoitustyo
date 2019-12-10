@@ -235,7 +235,7 @@ public class TimesheetFXMLController {
         // Create a header row
         Row headerRow = sheet.createRow(0);    
         ///Set titles of columns
-        for (int i=0; i<tblEntries.getColumns().size();i++) {
+        for (int i = 0; i < tblEntries.getColumns().size(); i++) {
             headerRow.createCell(i).setCellValue(tblEntries.getColumns().get(i).getText());
         }
         
@@ -250,15 +250,14 @@ public class TimesheetFXMLController {
                     if (cellValue != null && Double.parseDouble(cellValue.toString()) != 0.0) {
                         row.createCell(cNum).setCellValue(Double.parseDouble(cellValue.toString()));
                     }
-                } catch (  NumberFormatException e ){
+                } catch (NumberFormatException e) {
                     row.createCell(cNum).setCellValue(cellValue.toString());
                 }
             }
         }
         
         try {
-            //String formatted = DateTimeFormatter.ofPattern("yyyyMMddkkmmss",Locale.GERMAN).format(Instant.now());
-            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home")+"/timesheet_export_"+Long.toString(Instant.now().getEpochSecond())+".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home") + "/timesheet_export_" + Long.toString(Instant.now().getEpochSecond()) + ".xlsx");
             workbook.write(fileOut);
             fileOut.close();
             
