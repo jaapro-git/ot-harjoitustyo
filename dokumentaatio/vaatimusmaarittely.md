@@ -10,7 +10,7 @@ Alkuvaiheessa sovelluksella on ainoastaan yksi käyttäjärooli eli _normaali k�
 
 ## Käyttöliittymäluonnos
 
-Sovellus koostuu yhdestä näkymästä:
+Sovellus koostuu yhdestä näkymästä: (toteutettu)
 
 <img src="https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/thumbnail_20191105_132129.jpg" width="750">
 
@@ -39,5 +39,6 @@ Sovellus aukeaa päänäkymään, jossa vanhoja kirjauksia voit katsella tai poi
 
 ## Jatkokehitysideoita
 
-Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavilla toiminnallisuuksilla
+Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavilla toiminnallisuuksilla:
+ - integraatio todoappin kanssa: mahdollisuus ladata lista todo:ita todoapista ja aloittaa ajankirjaaminen niitä vasten.
 
