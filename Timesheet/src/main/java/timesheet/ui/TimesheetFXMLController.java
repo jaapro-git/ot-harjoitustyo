@@ -175,6 +175,7 @@ public class TimesheetFXMLController {
         
         lblEntries.setText(lblEntries.getText().replace(timesheetService.getCurrentUser().getName(), "$cUser$"));
         timesheetService.userLogout();
+        tblEntries.getItems().clear();
         initialize();
     } 
     
@@ -257,13 +258,13 @@ public class TimesheetFXMLController {
         
         try {
             //String formatted = DateTimeFormatter.ofPattern("yyyyMMddkkmmss",Locale.GERMAN).format(Instant.now());
-            FileOutputStream fileOut = new FileOutputStream("timesheet_export_"+Long.toString(Instant.now().getEpochSecond())+".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(System.getProperty("user.home")+"/timesheet_export_"+Long.toString(Instant.now().getEpochSecond())+".xlsx");
             workbook.write(fileOut);
             fileOut.close();
             
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Timesheet Successfully Exported");
-            alert.setHeaderText("A new file was created in the root folder");
+            alert.setHeaderText("A new file was created in the user's home folder");
             alert.show();
         } catch (IOException ex) {
             
