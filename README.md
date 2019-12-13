@@ -11,6 +11,8 @@ Sovelluksen avulla käyttäjät voivat ylläpitää tuntikirjauksia. Jokainen k�
 
 [Työaikakirjanpito](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 
+[Käyttöohje](https://github.com/jaapro-git/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
+
 ## Releaset
 
 [Viikko 5](https://github.com/jaapro-git/ot-harjoitustyo/releases/tag/viikko5)
