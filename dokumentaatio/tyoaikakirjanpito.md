@@ -16,4 +16,5 @@
 | 2.12.  | 4    | dokumentaatio|
 | 6.12.  | 2    | code review ja excel export|
 | 9.12.  | 2    | dokumentaatio ja bugfixing|
-| yht    | 48   | |
+| 13.12. | 2    | viilauksia palautteen perusteella ja dokumentointia|
+| yht    | 50   | |
