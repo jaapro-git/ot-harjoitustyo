@@ -103,14 +103,14 @@ public class TimesheetTest {
             System.out.println("SQL Error!");
         }
         
-        assertEquals(session.getEntries().size(), 3);
+        assertEquals(3, session.getEntries().size());
     }
     
     @Test
     public void listEntries(){
         if(session.userLogin(varUname)) {
             for(TimesheetEntry e:session.getEntries()){
-                assertEquals(e.getUsername(), varUname);
+                assertEquals(varUname, e.getUsername());
             }
         }
     }
@@ -119,9 +119,9 @@ public class TimesheetTest {
     public void userLogoutTest(){
         
         session.userLogin(uname);
-        assertEquals(session.getCurrentUser().getUsername(), uname);
+        assertEquals(uname, session.getCurrentUser().getUsername());
         session.userLogout();
-        assertEquals(session.getCurrentUser(), null);
+        assertEquals(null, session.getCurrentUser());
     }
     
     @Test
@@ -138,7 +138,7 @@ public class TimesheetTest {
             System.out.println("SQL Error!");
         }
         
-        assertEquals(session.getEntries().size(), count);
+        assertEquals(count, session.getEntries().size());
     }
     
     @Test
@@ -156,7 +156,7 @@ public class TimesheetTest {
         
         for(TimesheetEntry e:session.getEntries()){
             if(e.getId() == id){
-                assertEquals(e.getComplete(), true);
+                assertEquals(true, e.getComplete());
             }
         }
     }
