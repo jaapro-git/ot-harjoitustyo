@@ -71,8 +71,7 @@ public class TimesheetTest {
     public void userCreateTest(){
         
         try{
-            if(session.newUser(varUname2, name)) return;
-            fail("Something did not work!"); 
+            assertEquals(true, session.newUser(varUname2, name));
         } catch(Exception ex){
             System.out.println(ex.getMessage());
             System.out.println("SQL Error!");
@@ -83,8 +82,7 @@ public class TimesheetTest {
     public void userLoginTest(){
         
         try{
-            if(session.userLogin(uname)) return;
-            fail("Something did not work!"); 
+            assertEquals(true, session.userLogin(uname));
         } catch(Exception ex){
             System.out.println(ex.getMessage());
             System.out.println("SQL Error!");
@@ -105,15 +103,14 @@ public class TimesheetTest {
             System.out.println("SQL Error!");
         }
         
-        if(session.getEntries().size() == 3) return;
-        fail("Something did not work!"); 
+        assertEquals(session.getEntries().size(), 3);
     }
     
     @Test
     public void listEntries(){
         if(session.userLogin(varUname)) {
             for(TimesheetEntry e:session.getEntries()){
-                if(e.getUsername() != varUname) fail("Something did not work!");
+                assertEquals(e.getUsername(), varUname);
             }
         }
     }
@@ -122,9 +119,9 @@ public class TimesheetTest {
     public void userLogoutTest(){
         
         session.userLogin(uname);
+        assertEquals(session.getCurrentUser().getUsername(), uname);
         session.userLogout();
-        if(session.getCurrentUser()==null) return;
-        fail("Something did not work!"); 
+        assertEquals(session.getCurrentUser(), null);
     }
     
     @Test
@@ -141,8 +138,7 @@ public class TimesheetTest {
             System.out.println("SQL Error!");
         }
         
-        if(session.getEntries().size() == count) return;
-        fail("Something did not work!"); 
+        assertEquals(session.getEntries().size(), count);
     }
     
     @Test
@@ -159,9 +155,9 @@ public class TimesheetTest {
         }
         
         for(TimesheetEntry e:session.getEntries()){
-            if(e.getId() == id && e.getComplete() == true) return;
+            if(e.getId() == id){
+                assertEquals(e.getComplete(), true);
+            }
         }
-        
-        fail("Something did not work!"); 
     }
 }
