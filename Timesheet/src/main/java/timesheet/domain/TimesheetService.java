@@ -101,7 +101,13 @@ public class TimesheetService {
      * @return
      */
     public boolean userLogin(String uname) {
-        User user = userData.findByUname(uname);
+        User user = null;
+        
+        try {
+            user = userData.findByUname(uname);
+        } catch (Exception ex) {
+			
+        }  
         
         if (user == null) {
             return false;
@@ -138,9 +144,13 @@ public class TimesheetService {
     public boolean newUser(String uname, String name) {
         
         //already exists?
-        if (userData.findByUname(uname) != null) {
-            return false;
-        }
+        try{
+            if (userData.findByUname(uname) != null) {
+                return false;
+            }
+        } catch (Exception ex) {
+			
+        }  
 
         User user = new User(uname, name);
         

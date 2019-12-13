@@ -16,7 +16,7 @@ import java.util.Locale;
  *
  * @author Jukka
  */
-public class TimesheetEntry extends Object implements Comparable<TimesheetEntry> {
+public class TimesheetEntry implements Comparable<TimesheetEntry> {
     
     private int id;
     private String comment;
@@ -125,9 +125,7 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
      * @return
      */
     public String getBeginTimeFormatted() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneId.systemDefault());
-        
-        return formatter.format(this.beginTimeStamp);
+        return formatDate(this.beginTimeStamp);
     } 
         
     /**
@@ -150,9 +148,7 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         if (this.endTimeStamp == null) {
             return "";
         } else {
-            DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneId.systemDefault());
-        
-            return formatter.format(this.endTimeStamp);
+            return formatDate(this.endTimeStamp);
         }
     }
     
@@ -207,5 +203,10 @@ public class TimesheetEntry extends Object implements Comparable<TimesheetEntry>
         } else {
             return 0;
         }
+    }
+    
+    private String formatDate(Instant dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withZone(ZoneId.systemDefault());
+        return formatter.format(dateTime);
     }
 } 
