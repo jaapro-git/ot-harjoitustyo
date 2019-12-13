@@ -41,4 +41,5 @@ Sovellus aukeaa päänäkymään, jossa vanhoja kirjauksia voit katsella tai poi
 
 Perusversion jälkeen järjestelmää täydennetään ajan salliessa esim. seuraavilla toiminnallisuuksilla:
  - integraatio todoappin kanssa: mahdollisuus ladata lista todo:ita todoapista ja aloittaa ajankirjaaminen niitä vasten.
+ - visuaalisempi tapa ilmaista completed-tieto, esim ikoni.
 
