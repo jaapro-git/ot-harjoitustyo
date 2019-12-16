@@ -139,8 +139,7 @@ public class DbTimesheetDao implements TimesheetDao {
      * @throws Exception
      */
     @Override
-    public boolean delete(int id) throws Exception  
-    {
+    public boolean delete(int id) throws Exception  {
         prepareConnection();
         if (conn != null) {
             PreparedStatement pstmt = conn.prepareStatement(deleteTimesheetEntry);

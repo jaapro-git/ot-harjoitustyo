@@ -162,4 +162,20 @@ public class TimesheetTest {
             }
         }
     }
+    
+    
+    @Test
+
+    public void equalWhenSameId() {
+        TimesheetEntry e1 = new TimesheetEntry(uname, "Test entry to be deleted");
+        TimesheetEntry e2 = new TimesheetEntry(uname, "Test entry to be deleted");
+        assertTrue(e1.equals(e2));
+    } 
+
+    @Test
+    public void nonEqualWhenDifferentType() {
+        TimesheetEntry e1 = new TimesheetEntry(uname, "Test entry to be deleted");
+        Object o = new Object();
+        assertFalse(e1.equals(o));
+    }  
 }

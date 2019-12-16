@@ -144,7 +144,7 @@ public class TimesheetService {
     public boolean newUser(String uname, String name) {
         
         //already exists?
-        try{
+        try {
             if (userData.findByUname(uname) != null) {
                 return false;
             }
