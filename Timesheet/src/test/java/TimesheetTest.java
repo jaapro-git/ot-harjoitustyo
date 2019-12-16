@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import timesheet.dao.Database;
 import timesheet.dao.DbTimesheetDao;
 import timesheet.dao.DbUserDao;
 import timesheet.domain.TimesheetEntry;
@@ -46,7 +47,8 @@ public class TimesheetTest {
         uname = "tester";
         name = "Testaaja";
         
-        try{
+        try {
+            Database db = new Database(false);
             session = new TimesheetService(new DbTimesheetDao(false), new DbUserDao(false));
             session.newUser(uname, name);
             session.newUser(varUname, name);

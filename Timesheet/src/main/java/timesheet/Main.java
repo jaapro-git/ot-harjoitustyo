@@ -24,7 +24,6 @@ public class Main {
         }
                 
         timesheet.ui.TimesheetUi.main(args);
-
         
     }
 }

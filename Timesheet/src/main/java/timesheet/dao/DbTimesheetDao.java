@@ -43,7 +43,7 @@ public class DbTimesheetDao implements TimesheetDao {
         if (debug) {
             url = "jdbc:sqlite::memory:";
         } else {
-            url = "jdbc:sqlite:timesheetTimesheetEntries.db";
+            url = "jdbc:sqlite:timesheetDatabase.db";
         } 
         
         getAllTimesheetEntries = "SELECT id, comment, complete, uname, begin, end "

@@ -34,7 +34,7 @@ public class Database {
         if (debug) {
             url = "jdbc:sqlite::memory:";
         } else {
-            url = "jdbc:sqlite:timesheetTimesheetEntries.db";
+            url = "jdbc:sqlite:timesheetDatabase.db";
         } 
         
         createTimesheetEntriesTable = "CREATE TABLE if  NOT EXISTS timesheetentries (\n"

@@ -41,7 +41,7 @@ public class DbUserDao implements UserDao {
         if (debug) {
             url = "jdbc:sqlite::memory:";
         } else {
-            url = "jdbc:sqlite:timesheetUsers.db";
+            url = "jdbc:sqlite:timesheetDatabase.db";
         } 
         
         selectAllUsers = "SELECT uname, name "
