@@ -5,6 +5,7 @@
  */
 package timesheet;
 
+import timesheet.dao.Database;
 import timesheet.ui.*;
 
 /**
@@ -16,7 +17,14 @@ public class Main {
     
     public static void main(String[] args) {
         
+        try {
+            Database db = new Database(false);
+        } catch (Exception ex) {
+            
+        }
+                
         timesheet.ui.TimesheetUi.main(args);
+
         
     }
 }

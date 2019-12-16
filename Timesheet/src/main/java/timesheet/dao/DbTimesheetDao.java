@@ -28,7 +28,6 @@ public class DbTimesheetDao implements TimesheetDao {
     
     private Connection conn;
     private DatabaseMetaData meta;
-    final private String createTimesheetEntriesTable;
     final private String getAllTimesheetEntries;
     final private String createTimesheetEntry;
     final private String deleteTimesheetEntry;
@@ -47,15 +46,6 @@ public class DbTimesheetDao implements TimesheetDao {
             url = "jdbc:sqlite:timesheetTimesheetEntries.db";
         } 
         
-        createTimesheetEntriesTable = "CREATE TABLE if  NOT EXISTS timesheetentries (\n"
-                                    + "id integer PRIMARY KEY, \n"
-                                    + "comment text, \n"
-                                    + "complete integer NOT NULL, \n"
-                                    + "uname text NOT NULL, \n"
-                                    + "begin text NOT NULL, \n"
-                                    + "end text \n"
-                                    + ");";
-        
         getAllTimesheetEntries = "SELECT id, comment, complete, uname, begin, end "
                                + "FROM timesheetentries;";
         
@@ -66,12 +56,6 @@ public class DbTimesheetDao implements TimesheetDao {
         createTimesheetEntry = "INSERT OR REPLACE INTO timesheetentries (id, comment, complete, uname, begin, end) "
                                     + "VALUES(?, ?, ?, ?, ?, ?);";
            
-        prepareConnection();
-        if (conn != null) {               
-            Statement stmt = conn.createStatement();
-            stmt.execute(createTimesheetEntriesTable);
-            conn.close();
-        } 
         refreshEntries();
     } 
     

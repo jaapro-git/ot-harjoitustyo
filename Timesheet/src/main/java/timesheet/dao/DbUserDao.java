@@ -26,14 +26,13 @@ public class DbUserDao implements UserDao {
     
     private Connection conn;
     private DatabaseMetaData meta;
-    final private String createUsersTable;
     final private String url;
     final private String selectAllUsers;
     final private String selectCurrentUser;
     final private String createUser;
     
     /**
-     * Creates the users db table if it does not exist and refreshes it with data.
+     * Sets parameters only.
      * @param debug
      * @throws Exception
      */
@@ -45,11 +44,6 @@ public class DbUserDao implements UserDao {
             url = "jdbc:sqlite:timesheetUsers.db";
         } 
         
-        createUsersTable = "CREATE TABLE IF NOT EXISTS users (\n"
-                         + " uname text PRIMARY KEY, \n"
-                         + " name text NOT NULL \n"
-                         + ");";
-        
         selectAllUsers = "SELECT uname, name "
                               + "FROM users;";
         
@@ -59,19 +53,8 @@ public class DbUserDao implements UserDao {
         
         createUser = "INSERT OR REPLACE INTO users (uname, name) "
                                 + "VALUES(?, ?);";
-           
-        prepareConnection();
-        if (conn != null) {               
-            Statement stmt = conn.createStatement();
-            stmt.execute(createUsersTable);
-
-            conn.close();
-        } 
-    } 
     
-    //private void update() throws Exception {
-    //    
-    //} 
+    }
 
     /**
      * Returns a user for the given username if it exists
